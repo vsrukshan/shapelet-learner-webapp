@@ -7,15 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/movie")
-public class RequestController {
+@RequestMapping("/dashboard")
+public class DashBoardController {
+    @RequestMapping(value="/{processID}", method = RequestMethod.GET)
+    public String getMovie(@PathVariable String processID, ModelMap model) {
 
-	@RequestMapping(value="/{name}", method = RequestMethod.GET)
-	public String getMovie(@PathVariable String name, ModelMap model) {
+        model.addAttribute("processID", processID);
+        return "index";
 
-		model.addAttribute("movie", name);
-		return "list";
-
-	}
-	
+    }
 }
