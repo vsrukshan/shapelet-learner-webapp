@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/dashboard")
 public class DashBoardController {
     @RequestMapping(value="/{processID}", method = RequestMethod.GET)
-    public String getMovie(@PathVariable String processID, ModelMap model) {
+    public String getDashboard(@PathVariable String processID, ModelMap model) {
 
         model.addAttribute("processID", processID);
         return "index";
