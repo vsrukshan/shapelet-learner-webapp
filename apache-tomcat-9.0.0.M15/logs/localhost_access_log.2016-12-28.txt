@@ -1,0 +1,17 @@
+0:0:0:0:0:0:0:1 - - [28/Dec/2016:12:41:57 +0530] "GET / HTTP/1.1" 404 -
+0:0:0:0:0:0:0:1 - - [28/Dec/2016:12:41:59 +0530] "GET / HTTP/1.1" 404 -
+0:0:0:0:0:0:0:1 - - [28/Dec/2016:12:42:09 +0530] "GET /Shapelet-trainer/movie/SpiderMan4 HTTP/1.1" 404 992
+0:0:0:0:0:0:0:1 - - [28/Dec/2016:12:42:10 +0530] "GET /favicon.ico HTTP/1.1" 404 -
+0:0:0:0:0:0:0:1 - - [28/Dec/2016:12:42:12 +0530] "GET /Shapelet-trainer/movie/SpiderMan4 HTTP/1.1" 404 992
+0:0:0:0:0:0:0:1 - - [28/Dec/2016:12:42:14 +0530] "GET /Shapelet-trainer/movie/SpiderMan4 HTTP/1.1" 404 992
+0:0:0:0:0:0:0:1 - - [28/Dec/2016:12:42:53 +0530] "GET /Shapelet-trainer/learner/test HTTP/1.1" 200 77
+0:0:0:0:0:0:0:1 - - [28/Dec/2016:12:43:58 +0530] "GET /Shapelet-trainer/learner/test HTTP/1.1" 200 1816
+0:0:0:0:0:0:0:1 - - [28/Dec/2016:12:45:59 +0530] "GET /Shapelet-trainer/learner/test HTTP/1.1" 200 77
+0:0:0:0:0:0:0:1 - - [28/Dec/2016:12:46:04 +0530] "GET /Shapelet-trainer/learner/graph HTTP/1.1" 200 78
+0:0:0:0:0:0:0:1 - - [28/Dec/2016:12:46:07 +0530] "GET /Shapelet-trainer/learner/graph HTTP/1.1" 200 78
+0:0:0:0:0:0:0:1 - - [28/Dec/2016:12:47:22 +0530] "GET /Shapelet-trainer/learner/graph HTTP/1.1" 200 1816
+0:0:0:0:0:0:0:1 - - [28/Dec/2016:12:48:22 +0530] "GET /Shapelet-trainer/learner/graph HTTP/1.1" 200 1816
+0:0:0:0:0:0:0:1 - - [28/Dec/2016:14:17:41 +0530] "GET /Shapelet-trainer/learner/graph HTTP/1.1" 200 1816
+0:0:0:0:0:0:0:1 - - [28/Dec/2016:14:18:55 +0530] "GET /Shapelet-trainer/learner/graph HTTP/1.1" 200 1816
+0:0:0:0:0:0:0:1 - - [28/Dec/2016:14:19:07 +0530] "GET /Shapelet-trainer/learner/graph HTTP/1.1" 200 1816
+0:0:0:0:0:0:0:1 - - [28/Dec/2016:14:19:55 +0530] "GET /Shapelet-trainer/learner/iris HTTP/1.1" 200 1816
