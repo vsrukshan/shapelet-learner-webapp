@@ -13,7 +13,7 @@ public class DashBoardController {
     public String getDashboard(@PathVariable String processID, ModelMap model) {
 
         model.addAttribute("processID", processID);
-        return "index";
+        return "dashboard";
 
     }
 }
