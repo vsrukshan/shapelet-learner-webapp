@@ -270,7 +270,7 @@ request.setAttribute("tomcatExamplesUrl", "/examples/");
       out.write("                            <li><a href=\"http://tomcat.apache.org/bugreport.html\">Tomcat 9.0 Bug Database</a></li>\r\n");
       out.write("                            <li><a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${tomcatDocUrl}", java.lang.String.class, (javax.servlet.jsp.PageContext)_jspx_page_context, null));
-      out.write("api/index.html\">Tomcat 9.0 JavaDocs</a></li>\r\n");
+      out.write("api/index.jsp\">Tomcat 9.0 JavaDocs</a></li>\r\n");
       out.write("                            <li><a href=\"http://svn.apache.org/repos/asf/tomcat/tc9.0.x/\">Tomcat 9.0 SVN Repository</a></li>\r\n");
       out.write("                        </ul>\r\n");
       out.write("                    </div>\r\n");
