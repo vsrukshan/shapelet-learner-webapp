@@ -1838,3 +1838,26 @@ Execution time in milli seconds: 436
 30-Dec-2016 01:58:12.843 INFO [Thread-5] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["ajp-nio-8009"]
 30-Dec-2016 01:58:12.845 INFO [Thread-5] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
 30-Dec-2016 01:58:12.846 INFO [Thread-5] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["ajp-nio-8009"]
+Error: Could not find or load main class org.apache.catalina.startup.Bootstrap
+Error: Could not find or load main class org.apache.catalina.startup.Bootstrap
+Error: Could not find or load main class org.apache.catalina.startup.Bootstrap
+Error: Could not find or load main class org.apache.catalina.startup.Bootstrap
+Error: Could not find or load main class org.apache.catalina.startup.Bootstrap
+Error: Could not find or load main class org.apache.catalina.startup.Bootstrap
+Error: Could not find or load main class org.apache.catalina.startup.Bootstrap
+Error: Could not find or load main class org.apache.catalina.startup.Bootstrap
+Error: Could not find or load main class org.apache.catalina.startup.Bootstrap
+Error: Could not find or load main class org.apache.catalina.startup.Bootstrap
+Error: Could not find or load main class org.apache.catalina.startup.Bootstrap
+Error: Could not find or load main class org.apache.catalina.startup.Bootstrap
+Error: Could not find or load main class org.apache.catalina.startup.Bootstrap
+Error: Could not find or load main class org.apache.catalina.startup.Bootstrap
+Error: Could not find or load main class org.apache.catalina.startup.Bootstrap
+Error: Could not find or load main class org.apache.catalina.startup.Bootstrap
+Error: Could not find or load main class org.apache.catalina.startup.Bootstrap
+Error: Could not find or load main class org.apache.catalina.startup.Bootstrap
+Error: Could not find or load main class org.apache.catalina.startup.Bootstrap
+Error: Could not find or load main class org.apache.catalina.startup.Bootstrap
+Error: Could not find or load main class org.apache.catalina.startup.Bootstrap
+Error: Could not find or load main class org.apache.catalina.startup.Bootstrap
+Error: Could not find or load main class org.apache.catalina.startup.Bootstrap

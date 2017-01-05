@@ -16,7 +16,7 @@ public class LearnShapelets
     {       long startTime = System.currentTimeMillis();
         try {
 
-            String ARFFName = "dataset/"+datasetName+".arff";
+            String ARFFName = "/dataset/"+datasetName+".arff";
             Instances data = ShapeletFilter.loadData(ARFFName);
 
             int size = data.size();
