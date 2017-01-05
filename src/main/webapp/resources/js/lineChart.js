@@ -14,34 +14,46 @@ var data = [
 for (var j = 0; j < count; j++) {
     datasetValue[j] =
     {
-        fillColor: 'rgba(220,220,220,0)',
-        strokeColor: 'rgba(220,180,0,1)',
+        borderColor: getRandomColor(),
         title: '2013',
+        fill: false,
+        lineTension: 0,
+        label: '# shapelet',
         data: data[j]
     };
-    lableNames[j] = "Col " + (j+1);
+    lableNames[j] = "Col " + (j + 1);
 }
 
-var lineChartData = {
-    labels: lableNames, 
-    datasets: datasetValue
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
 
-};
-
-Chart.defaults.global.animationSteps = 50;
-Chart.defaults.global.tooltipYPadding = 16;
-Chart.defaults.global.tooltipCornerRadius = 0;
-Chart.defaults.global.tooltipTitleFontStyle = "normal";
-Chart.defaults.global.tooltipFillColor = "rgba(0,160,0,0.8)";
-Chart.defaults.global.animationEasing = "easeOutBounce";
-Chart.defaults.global.responsive = true;
-Chart.defaults.global.scaleLineColor = "black";
-Chart.defaults.global.scaleFontSize = 16;
-
-var ctx = document.getElementById("canvas").getContext("2d");
-var LineChartDemo = new Chart(ctx).Line(lineChartData, {
-    pointDotRadius: 2,
-    bezierCurve: false,
-    scaleShowVerticalLines: false,
-    scaleGridLineColor: "black"
+var ctx = document.getElementById("canvas");
+var lineChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: lableNames,
+        datasets: datasetValue
+    },
+    backgroundColor: 'transparent',
+    borderColor: '#F78511',
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
 });
+
+canvas.onclick = function(evt){
+    var activePoints = lineChart.getElementsAtEvent(evt);
+    console.log(activePoints);
+};

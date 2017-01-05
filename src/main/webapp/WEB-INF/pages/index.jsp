@@ -1,9 +1,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <link rel="stylesheet" href="c:url value=/resources/css/bootstrap/bootstrap.min.css"/>
     <link href="<c:url value="/resources/css/custom.css" />" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+    <script src="<c:url value="/resources/js/Chart.min.js" />"></script>
 </head>
 <body>
 <div class="container">
