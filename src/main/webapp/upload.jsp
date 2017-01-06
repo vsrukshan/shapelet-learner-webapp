@@ -10,13 +10,39 @@
 <html>
 <head>
     <title>Upload File Request Page</title>
+    <script src="${pageContext.request.contextPath}/resources/js/plugins/jquery/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/plugins/jquery/jquery.form.js"></script>
+    <script>function uploadJqueryForm() {
+        $('#result').html('');
+
+        $("#submitForm").ajaxForm({
+            success: function (data) {
+                $('#result').html(data);
+            },
+            dataType: "text"
+        }).submit();
+    }</script>
+    <script>
+        $(document).ready(function () {
+            $('#loading').hide();
+        });
+        $(document).ajaxStart(function () {
+            $('#loading').show();
+        }).ajaxStop(function () {
+            $('#loading').hide();
+        });
+    </script>
 </head>
 <body>
-<form method="POST" action="uploadFile" enctype="multipart/form-data">
+<form id="submitForm" method="POST" action="uploadFile" enctype="multipart/form-data">
     File to upload: <input type="file" name="file">
 
-
-    <input type="submit" value="Upload"> Press here to upload the file!
 </form>
+<button value="Submit" onclick="uploadJqueryForm()">Upload</button>
+<i></i><br/>
+<div id="result"></div>
+<div id="loading">
+    <p><img src="${pageContext.request.contextPath}/resources/img/jquery/loading-overlay.gif"/></p>
+</div>
 </body>
 </html>

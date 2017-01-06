@@ -26,7 +26,8 @@ public class FileUploadController {
      * Upload single file using Spring Controller
      */
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
-    public @ResponseBody
+    public
+    @ResponseBody
     String uploadFileHandler(@RequestParam("file") MultipartFile file) {
 
         if (!file.isEmpty()) {
@@ -64,7 +65,8 @@ public class FileUploadController {
      * Upload multiple file using Spring Controller
      */
     @RequestMapping(value = "/uploadMultipleFile", method = RequestMethod.POST)
-    public @ResponseBody
+    public
+    @ResponseBody
     String uploadMultipleFileHandler(@RequestParam("name") String[] names,
                                      @RequestParam("file") MultipartFile[] files) {
 
