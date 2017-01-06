@@ -53,8 +53,20 @@ var lineChart = new Chart(ctx, {
     }
 });
 
-ctx.onclick = function(evt){
-    var activePoints = lineChart.getElementsAtEvent(evt);
-    console.log(activePoints);
-};
+ctx.onclick = function (e) {
+    var helpers = Chart.helpers;
 
+    var eventPosition = helpers.getRelativePosition(e, lineChart.chart);
+    var mouseX = eventPosition.x;
+    var mouseY = eventPosition.y;
+
+    var activePoints = lineChart.getElementAtEvent(e);
+    console.log(activePoints);
+
+    var firstPoint = activePoints[0];
+    console.log(firstPoint);
+    if (firstPoint !== undefined) {
+        alert(firstPoint.index + ': ' + firstPoint.label);
+    }
+    
+};

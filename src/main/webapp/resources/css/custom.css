@@ -8,3 +8,48 @@
     font-size: 14px;
     padding-top: 140px;
 }
+.upload-drop-zone {
+    height: 200px;
+    border-width: 2px;
+    margin-bottom: 20px;
+}
+
+/* skin.css Style*/
+.upload-drop-zone {
+    color: #ccc;
+    border-style: dashed;
+    border-color: #ccc;
+    line-height: 200px;
+    text-align: center
+}
+.upload-drop-zone.drop {
+    color: #222;
+    border-color: #222;
+}
+.myButton {
+    -moz-box-shadow: 0px 10px 14px -7px #20a176;
+    -webkit-box-shadow: 0px 10px 14px -7px #20a176;
+    box-shadow: 0px 10px 14px -7px #20a176;
+    background-color:#36ad83;
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;
+    border-radius:8px;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:20px;
+    font-weight:bold;
+    padding:13px 32px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #ffffff;
+}
+.myButton:hover {
+    background-color:#20b36c;
+}
+.myButton:active {
+    position:relative;
+    top:1px;
+}
+
+
