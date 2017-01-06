@@ -53,7 +53,8 @@ var lineChart = new Chart(ctx, {
     }
 });
 
-canvas.onclick = function(evt){
+ctx.onclick = function(evt){
     var activePoints = lineChart.getElementsAtEvent(evt);
     console.log(activePoints);
 };
+
