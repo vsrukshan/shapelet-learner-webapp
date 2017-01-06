@@ -70,5 +70,4 @@ buildNumber.properties
 .idea/
 Shapelet-Learner.iml
 /Shapelet-Learner.iml
-/src/main/java/tech/artisanhub/controller/FileUploadController.java
 /tomcat.8334/
