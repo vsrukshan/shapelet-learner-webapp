@@ -13,7 +13,7 @@ public class EmailSender {
         Content content = new Content("text/plain", emailContent);
         Mail mail = new Mail(from, subject, to, content);
 
-        SendGrid sg = new SendGrid("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");
+        SendGrid sg = new SendGrid("SendGrid API Key");
         Request request = new Request();
 
            try {
