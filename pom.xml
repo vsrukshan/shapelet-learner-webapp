@@ -3,13 +3,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>tech.artisanhub</groupId>
 	<artifactId>Shapelet-Learner</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<name>Shapelet Learner</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
 		<spring.version>3.0.5.RELEASE</spring.version>
+		<tomcat.version>8.5.2</tomcat.version>
 	</properties>
 
 	<dependencies>
@@ -55,17 +56,70 @@
 			<artifactId>chartjs</artifactId>
 			<version>2.4.0</version>
 		</dependency>
+<<<<<<< HEAD
+=======
+
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-core</artifactId>
+			<version>${tomcat.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-logging-juli</artifactId>
+			<version>${tomcat.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<version>${tomcat.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jasper</artifactId>
+			<version>${tomcat.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jasper-el</artifactId>
+			<version>${tomcat.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jsp-api</artifactId>
+			<version>${tomcat.version}</version>
+		</dependency>
+>>>>>>> 85a24b22414a96f0bf37c81c7917ab4447849cc5
 	</dependencies>
 
 	<build>
 		<finalName>Shapelet-trainer</finalName>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>appassembler-maven-plugin</artifactId>
+				<version>1.1.1</version>
 				<configuration>
+<<<<<<< HEAD
 					<outputDirectory>/home/prashan/Software/Server/tomcat-8/webapps</outputDirectory>
+=======
+					<assembleDirectory>target</assembleDirectory>
+					<programs>
+						<program>
+							<mainClass>tech.artisanhub.launch.Main</mainClass>
+							<name>webapp</name>
+						</program>
+					</programs>
+>>>>>>> 85a24b22414a96f0bf37c81c7917ab4447849cc5
 				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>assemble</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
