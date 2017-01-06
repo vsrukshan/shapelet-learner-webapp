@@ -16,7 +16,7 @@ public class LearnerController {
 
 		    LearnShapelets.learnShapelets(name);
 			model.addAttribute("test", name);
-			return "graphVisualizer";
+			return "googleChartsVisualizer";
 
 
 	}

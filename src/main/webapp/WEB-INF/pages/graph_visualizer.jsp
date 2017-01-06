@@ -12,8 +12,12 @@
 
     <!-- CSS INCLUDE -->
     <link rel="stylesheet" type="text/css" id="theme" href="../../resources/css/theme-default.css"/>
-    <link rel="stylesheet" type="text/css" href="../../resources/css/custom.css"/>
     <!-- EOF CSS INCLUDE -->
+
+    <%--ChartJs INCLUDE--%>
+    <link href="../../resources/css/custom.css" rel="stylesheet">
+    <script src="../../resources/js/Chart.min.js"></script>
+    <%--EOF ChartJs INCLUDE--%>
 </head>
 <body>
 <!-- START PAGE CONTAINER -->
@@ -42,13 +46,11 @@
                 </div>
             </li>
             <li class="xn-title">Navigation</li>
-            <li class="active">
-                <a href="dashboard"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>
-            </li>
+            <li><a href="dashboard"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a></li>
             <li class="xn-openable">
                 <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Pages</span></a>
                 <ul>
-                    <li><a href="graph_visualizer"><span class="fa fa-users"></span> Shapelet Visualizer</a></li>
+                    <li class="active"><a href="graph_visualizer"><span class="fa fa-users"></span> Shapelet Visualizer</a></li>
                     <li class="xn-openable">
                         <a href="#"><span class="fa fa-clock-o"></span> Timeline</a>
                         <ul>
@@ -232,176 +234,27 @@
         <!-- START BREADCRUMB -->
         <ul class="breadcrumb">
             <li><a href="#">Home</a></li>
-            <li class="active">Dashboard</li>
+            <li class="active">Shapelet Visualizer</li>
         </ul>
         <!-- END BREADCRUMB -->
 
         <!-- PAGE CONTENT WRAPPER -->
         <div class="page-content-wrap">
-
             <!-- START WIDGETS -->
             <div class="row">
-                <div class="col-md-3">
-                    <!-- START WIDGET MESSAGES -->
-                    <div class="widget widget-default widget-item-icon" onclick="location.href='pages-messages.html';">
-                        <div class="widget-item-left">
-                            <span class="fa fa-envelope"></span>
-                        </div>
-                        <div class="widget-data">
-                            <div class="widget-int num-count">2</div>
-                            <div class="widget-title">Events</div>
-                            <div class="widget-subtitle">In your Dataset</div>
-                        </div>
-                        <div class="widget-controls">
-                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip"
-                               data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
-                        </div>
-                    </div>
-                    <!-- END WIDGET MESSAGES -->
-
-                </div>
-                <div class="col-md-3">
-
-                    <!-- START WIDGET MESSAGES -->
-                    <div class="widget widget-default widget-item-icon" onclick="location.href='pages-messages.html';">
-                        <div class="widget-item-left">
-                            <span class="fa fa-envelope"></span>
-                        </div>
-                        <div class="widget-data">
-                            <div class="widget-int num-count">4234521</div>
-                            <div class="widget-title">Shapelets</div>
-                            <div class="widget-subtitle">In your Dataset</div>
-                        </div>
-                        <div class="widget-controls">
-                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip"
-                               data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
-                        </div>
-                    </div>
-                    <!-- END WIDGET MESSAGES -->
-
-                </div>
-                <div class="col-md-3">
-
-                    <!-- START WIDGET REGISTRED -->
-                    <div class="widget widget-default widget-item-icon" onclick="location.href='graph_visualizer';">
-                        <div class="widget-item-left">
-                            <span class="fa fa-user"></span>
-                        </div>
-                        <div class="widget-data">
-                            <div class="widget-int num-count">375</div>
-                            <div class="widget-title">Important Shapelets</div>
-                            <div class="widget-subtitle">In your Dataset</div>
-                        </div>
-                        <div class="widget-controls">
-                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip"
-                               data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
-                        </div>
-                    </div>
-                    <!-- END WIDGET REGISTRED -->
-
-                </div>
-                <div class="col-md-3">
-
-                    <!-- START WIDGET CLOCK -->
-                    <div class="widget widget-info widget-padding-sm">
-                        <div class="widget-big-int plugin-clock">00:00</div>
-                        <div class="widget-subtitle plugin-date">Loading...</div>
-                        <div class="widget-controls">
-                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip"
-                               data-placement="left" title="Remove Widget"><span class="fa fa-times"></span></a>
-                        </div>
-                        <div class="widget-buttons widget-c3">
-                            <div class="col">
-                                <a href="#"><span class="fa fa-clock-o"></span></a>
-                            </div>
-                            <div class="col">
-                                <a href="#"><span class="fa fa-bell"></span></a>
-                            </div>
-                            <div class="col">
-                                <a href="#"><span class="fa fa-calendar"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END WIDGET CLOCK -->
-
-                </div>
+                <canvas id="canvas"></canvas>
             </div>
+            <div style="text-align:center;">
+                <a id="button" onclick="getChart()"  class="myButton">Proceed</a>
+            </div>
+
             <!-- END WIDGETS -->
-
-            <%--STRAT FILE UPLOAD--%>
-            <div class="container">
-                <div class="panel panel-default">
-                    <div class="panel-heading"><strong>Upload Files</strong>
-                        <small>File upload</small>
-                    </div>
-                    <div class="panel-body">
-
-                        <!-- Standar Form -->
-                        <h4>Select files from your computer</h4>
-                        <form action="" method="post" enctype="multipart/form-data" id="js-upload-form">
-                            <div class="form-inline">
-                                <div class="form-group">
-                                    <input type="file" name="files[]" id="js-upload-files" multiple>
-                                </div>
-                                <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Upload
-                                    files
-                                </button>
-                            </div>
-                        </form>
-
-                        <!-- Drop Zone -->
-                        <h4>Or drag and drop files below</h4>
-                        <div class="upload-drop-zone" id="drop-zone">
-                            Just drag and drop files here
-                        </div>
-
-                        <!-- Progress Bar -->
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
-                                 aria-valuemax="100" style="width: 60%;">
-                                <span class="sr-only">60% Complete</span>
-                            </div>
-                        </div>
-
-                        <!-- Upload Finished -->
-                        <div class="js-upload-finished">
-                            <h3>Processed files</h3>
-                            <div class="list-group">
-                                <a href="#" class="list-group-item list-group-item-success"><span
-                                        class="badge alert-success pull-right">Success</span>image-01.jpg</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> <!-- /container -->
-
-
         </div>
         <!-- END PAGE CONTENT WRAPPER -->
     </div>
     <!-- END PAGE CONTENT -->
 </div>
 <!-- END PAGE CONTAINER -->
-
-<!-- MESSAGE BOX-->
-<div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
-    <div class="mb-container">
-        <div class="mb-middle">
-            <div class="mb-title"><span class="fa fa-sign-out"></span> Log <strong>Out</strong> ?</div>
-            <div class="mb-content">
-                <p>Are you sure you want to log out?</p>
-                <p>Press No if youwant to continue work. Press Yes to logout current user.</p>
-            </div>
-            <div class="mb-footer">
-                <div class="pull-right">
-                    <a href="pages-login.html" class="btn btn-success btn-lg">Yes</a>
-                    <button class="btn btn-default btn-lg mb-control-close">No</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- END MESSAGE BOX-->
 
 <!-- START PRELOADS -->
 <audio id="audio-alert" src="../../resources/audio/alert.mp3" preload="auto"></audio>
@@ -441,6 +294,14 @@
 <script type="text/javascript" src="../../resources/js/actions.js"></script>
 
 <script type="text/javascript" src="../../resources/js/demo_dashboard.js"></script>
+<script src="../../resources/js/lineChart.js"></script>
+<script>
+    function getChart() {
+        var button = document.getElementById("button");
+        var canvas = document.getElementById("canvas");
+
+    }
+</script>
 <!-- END TEMPLATE -->
 <!-- END SCRIPTS -->
 </body>
