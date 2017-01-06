@@ -15,6 +15,7 @@ public class LearnerController {
 	public String getProcess(@PathVariable String name, ModelMap model) {
 
 		    LearnShapelets.learnShapelets(name);
+		    int i = 5;
 			model.addAttribute("test", name);
 			return "graphVisualizer";
 
