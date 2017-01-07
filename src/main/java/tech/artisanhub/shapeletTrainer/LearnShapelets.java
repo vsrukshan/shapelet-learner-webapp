@@ -16,7 +16,8 @@ public class LearnShapelets
     {       long startTime = System.currentTimeMillis();
         try {
 
-            String ARFFName = "/dataset/"+datasetName+".arff";
+            String rootPath = System.getProperty("catalina.home");
+            String ARFFName = rootPath + File.separator + "uploads"+File.separator + datasetName+".arff";
             Instances data = ShapeletFilter.loadData(ARFFName);
 
             int size = data.size();
@@ -31,7 +32,7 @@ public class LearnShapelets
             int minLength = 2;
             int maxLength = data.get(1).numValues()-1;
 
-            String outPutFile = "dataset/generatedShapelets.txt";
+            String outPutFile = rootPath + File.separator + "uploads"+File.separator + "generatedShapelets.txt";
             ShapeletFilter sf = new ShapeletFilter(k, minLength, maxLength);
             sf.setLogOutputFile(outPutFile); // log file stores shapelet output
             ArrayList<Shapelet> generatedShapelets = sf.process(data);
@@ -94,7 +95,8 @@ public class LearnShapelets
                     json = json + " ],\n";
                 }
                 json = json +" ]";
-                File file = new File("dataset/importantShapelets/event"+eventCount+".json");
+                String rootPath = System.getProperty("catalina.home");
+                File file = new File(rootPath + File.separator + "uploads"+File.separator + "importantShapelets"+File.separator+"event"+eventCount+".json");
                 output = new BufferedWriter(new FileWriter(file));
                 output.write(json);
                 output.close();
