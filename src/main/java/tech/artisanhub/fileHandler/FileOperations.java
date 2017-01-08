@@ -1,6 +1,7 @@
 package tech.artisanhub.fileHandler;
 
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.io.File;
@@ -13,12 +14,18 @@ public class FileOperations {
     {
         File file = new File(path);
         File[] files = file.listFiles();
-        JSONObject jsonObject = new JSONObject();
-        for(File f: files){
-            jsonObject.put(f.getName(),convertTime(f.lastModified()));
+        JSONObject jsonObject;
+        JSONArray jsonArray = new JSONArray();
 
+        for(File f: files){
+            jsonObject = new JSONObject();
+            jsonObject.put("Last Modified",convertTime(f.lastModified()));
+            jsonObject.put("File Name",f.getName());
+            jsonArray.add(jsonObject);
         }
-        return jsonObject;
+        JSONObject mainObj = new JSONObject();
+        mainObj.put("Files on Server",jsonArray);
+        return mainObj;
     }
 
     public static String convertTime(long time){

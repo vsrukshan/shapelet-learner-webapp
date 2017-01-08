@@ -12,25 +12,49 @@
     <title>Upload File Request Page</title>
     <script src="${pageContext.request.contextPath}/resources/js/plugins/jquery/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/plugins/jquery/jquery.form.js"></script>
-    <script>function uploadJqueryForm() {
-        $('#result').html('');
-
-        $("#submitForm").ajaxForm({
-            success: function (data) {
-                $('#result').html(data);
-            },
-            dataType: "text"
-        }).submit();
-    }</script>
     <script>
+        function uploadJqueryForm() {
+            $(document).on("ajaxStart.firstCall", function () {
+                $('#loading').show();
+            });
+            $(document).on("ajaxStop.firstCall", function () {
+                $('#loading').hide();
+            });
+            $('#result').html('');
+
+            $("#submitForm").ajaxForm({
+                success: function (data) {
+                    $('#result').html(data);
+                },
+                dataType: "text"
+            }).submit();
+        }
+
+        function showFilesOnServer() {
+            $(document).off(".firstCall");
+            $.ajax({
+                url: '/datasets',
+                data: {
+                    format: 'json'
+                },
+                error: function () {
+                    $('#info').html('<p>An error has occurred</p>');
+                },
+                dataType: 'json',
+                success: function (data) {
+                    var jsonPretty = JSON.stringify(data, null, 4);
+                    console.log(jsonPretty);
+                    document.getElementById("info").innerHTML = jsonPretty;
+                },
+                type: 'GET'
+            });
+        }
+
         $(document).ready(function () {
             $('#loading').hide();
         });
-        $(document).ajaxStart(function () {
-            $('#loading').show();
-        }).ajaxStop(function () {
-            $('#loading').hide();
-        });
+
+
     </script>
 </head>
 <body>
@@ -44,5 +68,8 @@
 <div id="loading">
     <p><img src="${pageContext.request.contextPath}/resources/img/jquery/loading-overlay.gif"/></p>
 </div>
+<h2>Following datasets are already in the server</h2>
+<button value="ShowFiles" onclick="showFilesOnServer()">ShowFiles</button>
+<div id="info"></div>
 </body>
 </html>
