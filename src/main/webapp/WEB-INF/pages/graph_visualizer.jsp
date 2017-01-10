@@ -295,11 +295,10 @@
 
 <script type="text/javascript" src="../../resources/js/demo_dashboard.js"></script>
 <script src="../../resources/js/lineChart.js"></script>
-<script>
+<script type="text/javascript">
     function getChart() {
         var button = document.getElementById("button");
         var canvas = document.getElementById("canvas");
-
     }
 </script>
 <!-- END TEMPLATE -->

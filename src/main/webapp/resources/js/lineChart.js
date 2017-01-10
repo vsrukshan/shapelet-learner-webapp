@@ -54,19 +54,26 @@ var lineChart = new Chart(ctx, {
 });
 
 ctx.onclick = function (e) {
-    var helpers = Chart.helpers;
+    // var helpers = Chart.helpers;
+    //
+    // var eventPosition = helpers.getRelativePosition(e, lineChart.chart);
+    // var mouseX = eventPosition.x;
+    // var mouseY = eventPosition.y;
+    //
+    // var activePoints = lineChart.getElementAtEvent(e);
+    // console.log(activePoints);
+    // // var dataset = lineChart.getDatasetAtEvent(e);
+    // // console.log(dataset);
+    // var meta = lineChart.getDatasetMeta(0);
+    // var x = meta.data[0]._model.x
+    // console.log(activePoints);
+    //
+    // var firstPoint = activePoints[0];
+    // console.log(firstPoint);
+    // if (firstPoint !== undefined) {
+    //     alert(firstPoint.index + ': ' + firstPoint.label);
+    // }
 
-    var eventPosition = helpers.getRelativePosition(e, lineChart.chart);
-    var mouseX = eventPosition.x;
-    var mouseY = eventPosition.y;
-
-    var activePoints = lineChart.getElementAtEvent(e);
-    console.log(activePoints);
-
-    var firstPoint = activePoints[0];
-    console.log(firstPoint);
-    if (firstPoint !== undefined) {
-        alert(firstPoint.index + ': ' + firstPoint.label);
-    }
+  
     
 };
