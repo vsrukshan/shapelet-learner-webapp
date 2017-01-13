@@ -3,16 +3,17 @@ package tech.artisanhub.fileHandler;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class FileOperations {
+    private static String shapeletsDirName = "generatedShapelets";
+
     public static JSONObject filesInDir(String path) {
         File file = new File(path);
         File[] files = file.listFiles();
@@ -40,7 +41,7 @@ public class FileOperations {
         String rootPath = System.getProperty("catalina.home");
         BufferedWriter output = null;
 
-        File dir = new File(rootPath + File.separator + "generatedShapelets");
+        File dir = new File(rootPath + File.separator + shapeletsDirName);
         if (!dir.exists())
             dir.mkdirs();
 
@@ -55,5 +56,12 @@ public class FileOperations {
             return false;
         }
 
+    }
+
+    public static JSONObject getGeneratedResults(String datasetName) throws IOException, ParseException {
+        JSONParser parser = new JSONParser();
+        String rootPath = System.getProperty("catalina.home");
+        FileReader fileReader = new FileReader(rootPath + File.separator + shapeletsDirName + File.separator + datasetName + ".json");
+        return (JSONObject) parser.parse(fileReader);
     }
 }
