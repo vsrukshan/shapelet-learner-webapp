@@ -25,7 +25,12 @@ public class LearnerController {
         ctx.register(AppConfig.class);
         ctx.refresh();
         AsyncTask task = ctx.getBean(AsyncTask.class);
-        task.doAsyncTask(name);
+        try {
+            task.doAsyncTask(name);
+        } catch (Exception e) {
+            System.out.println(name + "Leaning has been interrupted");
+            //Send an email
+        }
 
         model.addAttribute("test", name);
         return "googleChartsVisualizer";

@@ -15,47 +15,45 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class LearnShapelets {
-    public static void learnShapelets(String datasetName) {
+    public static void learnShapelets(String datasetName) throws Exception {
         long startTime = System.currentTimeMillis();
-        try {
 
-            String rootPath = System.getProperty("catalina.home");
-            String ARFFName = rootPath + File.separator + "uploads" + File.separator + datasetName + ".arff";
-            Instances data = ShapeletFilter.loadData(ARFFName);
 
-            int size = data.size();
-            for (int i = 0; i < size; i++) {
-                if (i > 4000) {
-                    data.remove(0);
-                }
+        String rootPath = System.getProperty("catalina.home");
+        String datasetPath = rootPath + File.separator + "uploads" + File.separator + datasetName;
+
+        Instances data = ShapeletFilter.loadData(datasetPath);
+
+        int size = data.size();
+        for (int i = 0; i < size; i++) {
+            if (i > 4000) {
+                data.remove(0);
             }
-
-            System.out.print(data.size());
-            int k = Integer.MAX_VALUE; // number of shapelets
-            int minLength = 2;
-            int maxLength = data.get(1).numValues() - 1;
-
-            String outPutFile = rootPath + File.separator + "uploads" + File.separator + "generatedShapelets.txt";
-            ShapeletFilter sf = new ShapeletFilter(k, minLength, maxLength);
-            sf.setLogOutputFile(outPutFile); // log file stores shapelet output
-            ArrayList<Shapelet> generatedShapelets = sf.process(data);
-
-
-            Map<Double, Integer> classDist = ShapeletFilter.getClassDistributions(data);
-            ArrayList<Integer> arr = new ArrayList<Integer>();
-            for (double val : classDist.keySet()) {
-                arr.add((int) val);
-            }
-
-            int shapeletClusterSize = (int) Math.sqrt(generatedShapelets.size()); //this defines the threshold. Put a larger number to detect all the events
-            ArrayList<Shapelet> mergedShapelets = new MergeShapelets().mergeShapelets(generatedShapelets, shapeletClusterSize); //meerging shapelets
-            ArrayList<Shapelet> finalOutputShapelets = new ImportantShapelets().GetImportantShapelets(mergedShapelets, data, arr); //find important shapelets
-            saveShapeleteStats(finalOutputShapelets, data.get(1).numValues() - 1,datasetName);
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+
+        System.out.print(data.size());
+        int k = Integer.MAX_VALUE; // number of shapelets
+        int minLength = 2;
+        int maxLength = data.get(1).numValues() - 1;
+
+        String outPutFile = rootPath + File.separator + "uploads" + File.separator + "generatedShapelets.txt";
+        ShapeletFilter sf = new ShapeletFilter(k, minLength, maxLength);
+        sf.setLogOutputFile(outPutFile); // log file stores shapelet output
+        ArrayList<Shapelet> generatedShapelets = sf.process(data);
+
+
+        Map<Double, Integer> classDist = ShapeletFilter.getClassDistributions(data);
+        ArrayList<Integer> arr = new ArrayList<Integer>();
+        for (double val : classDist.keySet()) {
+            arr.add((int) val);
+        }
+
+        int shapeletClusterSize = (int) Math.sqrt(generatedShapelets.size()); //this defines the threshold. Put a larger number to detect all the events
+        ArrayList<Shapelet> mergedShapelets = new MergeShapelets().mergeShapelets(generatedShapelets, shapeletClusterSize); //meerging shapelets
+        ArrayList<Shapelet> finalOutputShapelets = new ImportantShapelets().GetImportantShapelets(mergedShapelets, data, arr); //find important shapelets
+        saveShapeleteStats(finalOutputShapelets, data.get(1).numValues() - 1, datasetName);
+
+
         long endTime = System.currentTimeMillis();
         long totalTime = endTime - startTime;
         System.out.println("\nExecution time in milli seconds: " + totalTime);
@@ -69,9 +67,9 @@ public class LearnShapelets {
         int eventCount = 0;
         int contentSize = 0;
 
-        JSONArray currRow ;
+        JSONArray currRow;
         JSONObject currRowObj;
-        JSONArray allRows ;
+        JSONArray allRows;
         JSONObject finalJsonObject = new JSONObject();
         JSONArray jsonArraytMainEvent = new JSONArray();
         JSONObject jsonObjectPerEvent;
@@ -101,7 +99,7 @@ public class LearnShapelets {
                             currRow.add(val.contentInMergedShapelets.get(i).get(j - shapeletVal));
                         }
                     }
-                    currRowObj.put("EventType", val.contentInMergedShapelets.get(i).get(contentSize-1).intValue()); //add the correct val
+                    currRowObj.put("EventType", val.contentInMergedShapelets.get(i).get(contentSize - 1).intValue()); //add the correct val
                     currRowObj.put("Values", currRow);
                     allRows.add(currRowObj);
 
@@ -112,12 +110,13 @@ public class LearnShapelets {
             }
 
 
-
         }
-        finalJsonObject.put("Data",jsonArraytMainEvent);
-        finalJsonObject.put("DatasetName","iris");
-        finalJsonObject.put("EventCount",eventCount);
+        finalJsonObject.put("Data", jsonArraytMainEvent);
+        finalJsonObject.put("DatasetName", "iris");
+        finalJsonObject.put("EventCount", eventCount);
         System.out.println(finalJsonObject);
-        FileOperations.saveImportantShapelets(finalJsonObject,datasetname);
+        datasetname = datasetname.replace(".csv","");
+        datasetname = datasetname.replace(".arff","");
+        FileOperations.saveImportantShapelets(finalJsonObject, datasetname);
     }
 }
