@@ -5,12 +5,14 @@ import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.xml.sax.SAXException;
 import tech.artisanhub.aSyncTaskManager.AppConfig;
 import tech.artisanhub.aSyncTaskManager.AsyncTask;
 import tech.artisanhub.fileHandler.FileOperations;
 import tech.artisanhub.shapeletTrainer.LearnShapelets;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
 @Controller
@@ -49,6 +51,10 @@ public class LearnerController {
             return "Error while reading the file";
         } catch (ParseException e) {
             return "Error file parsing the json string";
+        } catch (ParserConfigurationException e) {
+            return "Error while reading from the properties.xml file";
+        } catch (SAXException e) {
+            return "Error while reading from the properties.xml file";
         }
 
     }

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<shapelet-learner>
+    <email-config>
+        <api-key>dinkar</api-key>
+        <sender>randika.12@cse.mrt.ac.lk</sender>
+    </email-config>
+    <file-operations>
+        <allowed-extensions>.csv,.arff</allowed-extensions>
+        <shapelet-dir-name>generatedShapelets</shapelet-dir-name>
+    </file-operations>
+</shapelet-learner>

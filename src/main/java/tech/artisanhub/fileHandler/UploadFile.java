@@ -13,7 +13,6 @@ import java.io.FileOutputStream;
 public class UploadFile {
 
     private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
-    private static String allowedfileExtentions = ".csv,.arff";
 
     public static String uploadSingleFile(MultipartFile file) {
         if (!file.isEmpty()) {
@@ -22,7 +21,7 @@ public class UploadFile {
                 byte[] bytes = file.getBytes();
                 int lastIndex = fileName.lastIndexOf('.');
                 String currFileExtension = fileName.substring(lastIndex, fileName.length());
-                if (!allowedfileExtentions.contains(currFileExtension)) {
+                if (!XMLParser.getAllowedFileExtensions().contains(currFileExtension)) {
                     return "Uploading failed. Please upload a CSV file or an ARFF file";
                 }
                 // Creating the directory to store file

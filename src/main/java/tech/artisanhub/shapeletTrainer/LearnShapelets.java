@@ -1,15 +1,12 @@
 package tech.artisanhub.shapeletTrainer;
 
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
-import org.jfree.ui.RefineryUtilities;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.xml.sax.SAXException;
 import tech.artisanhub.fileHandler.FileOperations;
-import tech.artisanhub.visualizer.XYLineChart_AWT;
 import weka.core.Instances;
-import weka.knowledgeflow.Data;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Map;
@@ -59,7 +56,7 @@ public class LearnShapelets {
         System.out.println("\nExecution time in milli seconds: " + totalTime);
     }
 
-    private static void saveShapeleteStats(ArrayList<Shapelet> shapelets, int noOfColumns, String datasetname) throws IOException {
+    private static void saveShapeleteStats(ArrayList<Shapelet> shapelets, int noOfColumns, String datasetname) throws IOException, ParserConfigurationException, SAXException {
         int size = 0;
         int startPos = 0;
         int shapeletVal = 0;
@@ -115,8 +112,8 @@ public class LearnShapelets {
         finalJsonObject.put("DatasetName", "iris");
         finalJsonObject.put("EventCount", eventCount);
         System.out.println(finalJsonObject);
-        datasetname = datasetname.replace(".csv","");
-        datasetname = datasetname.replace(".arff","");
+        datasetname = datasetname.replace(".csv", "");
+        datasetname = datasetname.replace(".arff", "");
         FileOperations.saveImportantShapelets(finalJsonObject, datasetname);
     }
 }
