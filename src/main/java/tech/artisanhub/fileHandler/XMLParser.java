@@ -13,7 +13,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class XMLParser {
-    private static String xmlLocation = "src/main/java/properties.xml";
+    private static String xmlLocation = "src"+File.separator+"main"+File.separator+"java"+File.separator+"properties.xml";
     private static File inputFile = new File(xmlLocation);
     private static DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 
