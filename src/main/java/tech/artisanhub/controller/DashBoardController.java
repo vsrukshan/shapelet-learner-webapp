@@ -22,7 +22,6 @@ public class DashBoardController {
 
     @RequestMapping(value = "/graph_visualizer", method = RequestMethod.GET)
     public String redirect() {
-
         return "graph_visualizer";
     }
 

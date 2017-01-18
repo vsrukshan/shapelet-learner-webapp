@@ -36,7 +36,7 @@ public class UploadFile {
                 logger.info("Server File Location="
                         + serverFile.getAbsolutePath());
 
-                return "You successfully uploaded file=" + file.getOriginalFilename();
+                return file.getOriginalFilename();
             } catch (Exception e) {
                 return "You failed to upload " + file.getOriginalFilename() + " => " + e.getMessage();
             }

@@ -3,15 +3,16 @@
 <head>
     <!-- META SECTION -->
     <title>Shaplet-Learner</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <link rel="icon" href="resources/img/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="resources/img/favicon.ico" type="image/x-icon"/>
     <!-- END META SECTION -->
 
     <!-- CSS INCLUDE -->
     <link rel="stylesheet" type="text/css" id="theme" href="resources/css/theme-default.css"/>
+    <link rel="stylesheet" type="text/css" href="resources/css/custom.css"/>
     <!-- EOF CSS INCLUDE -->
 </head>
 <body>
@@ -43,58 +44,9 @@
             <li class="xn-title">Navigation</li>
             <li class="active">
                 <a href="dashboard"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>
-            </li>
-            <li class="xn-openable">
-                <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Pages</span></a>
-                <ul>
-                    <li><a href="graph_visualizer"><span class="fa fa-users"></span> Shapelet Visualizer</a></li>
-                    <li class="xn-openable">
-                        <a href="#"><span class="fa fa-clock-o"></span> Timeline</a>
-                        <ul>
-                            <li><a href="pages-timeline.html"><span class="fa fa-align-center"></span> Default</a></li>
-                            <li><a href="pages-timeline-simple.html"><span class="fa fa-align-justify"></span> Full Width</a></li>
-                        </ul>
-                    </li>
-                    <li class="xn-openable">
-                        <a href="#"><span class="fa fa-envelope"></span> Mailbox</a>
-                        <ul>
-                            <li><a href="pages-mailbox-inbox.html"><span class="fa fa-inbox"></span> Inbox</a></li>
-                            <li><a href="pages-mailbox-message.html"><span class="fa fa-file-text"></span> Message</a></li>
-                            <li><a href="pages-mailbox-compose.html"><span class="fa fa-pencil"></span> Compose</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="pages-messages.html"><span class="fa fa-comments"></span> Messages</a></li>
-                    <li><a href="pages-calendar.html"><span class="fa fa-calendar"></span> Calendar</a></li>
-                    <li><a href="pages-tasks.html"><span class="fa fa-edit"></span> Tasks</a></li>
-                    <li><a href="pages-content-table.html"><span class="fa fa-columns"></span> Content Table</a></li>
-                    <li><a href="pages-faq.html"><span class="fa fa-question-circle"></span> FAQ</a></li>
-                    <li><a href="pages-search.html"><span class="fa fa-search"></span> Search</a></li>
-                    <li class="xn-openable">
-                        <a href="#"><span class="fa fa-file"></span> Blog</a>
 
-                        <ul>
-                            <li><a href="pages-blog-list.html"><span class="fa fa-copy"></span> List of Posts</a></li>
-                            <li><a href="pages-blog-post.html"><span class="fa fa-file-o"></span>Single Post</a></li>
-                        </ul>
-                    </li>
-                    <li class="xn-openable">
-                        <a href="#"><span class="fa fa-sign-in"></span> Login</a>
-                        <ul>
-                            <li><a href="pages-login.html">App Login</a></li>
-                            <li><a href="pages-login-website.html">Website Login</a></li>
-                            <li><a href="pages-login-website-light.html"> Website Login Light</a></li>
-                        </ul>
-                    </li>
-                    <li class="xn-openable">
-                        <a href="#"><span class="fa fa-warning"></span> Error Pages</a>
-                        <ul>
-                            <li><a href="pages-error-404.html">Error 404 Sample 1</a></li>
-                            <li><a href="pages-error-404-2.html">Error 404 Sample 2</a></li>
-                            <li><a href="pages-error-500.html"> Error 500</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
+            <li><a href="graph_visualizer"><span class="fa fa-users"></span> Shapelet Visualizer</a></li>
+
         </ul>
         <!-- END X-NAVIGATION -->
     </div>
@@ -142,7 +94,8 @@
                         </a>
                         <a href="#" class="list-group-item">
                             <div class="list-group-status status-away"></div>
-                            <img src="resources/assets/images/users/user.jpg" class="pull-left" alt="Dmitry Ivaniuk"/>
+                            <img src="resources/assets/images/users/user.jpg" class="pull-left"
+                                 alt="Dmitry Ivaniuk"/>
                             <span class="contacts-title">Dmitry Ivaniuk</span>
                             <p>Donec risus sapien, sagittis et magna quis</p>
                         </a>
@@ -154,13 +107,14 @@
                         </a>
                         <a href="#" class="list-group-item">
                             <div class="list-group-status status-offline"></div>
-                            <img src="resources/assets/images/users/user6.jpg" class="pull-left" alt="Darth Vader"/>
+                            <img src="resources/assets/images/users/user6.jpg" class="pull-left"
+                                 alt="Darth Vader"/>
                             <span class="contacts-title">Darth Vader</span>
                             <p>I want my money back!</p>
                         </a>
                     </div>
                     <div class="panel-footer text-center">
-                        <a href="pages-messages.html">Show all messages</a>
+                        <a>Show all messages</a>
                     </div>
                 </div>
             </li>
@@ -180,34 +134,43 @@
                         <a class="list-group-item" href="#">
                             <strong>Phasellus augue arcu, elementum</strong>
                             <div class="progress progress-small progress-striped active">
-                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">50%</div>
+                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="50"
+                                     aria-valuemin="0" aria-valuemax="100" style="width: 50%;">50%
+                                </div>
                             </div>
                             <small class="text-muted">John Doe, 25 Sep 2014 / 50%</small>
                         </a>
                         <a class="list-group-item" href="#">
                             <strong>Aenean ac cursus</strong>
                             <div class="progress progress-small progress-striped active">
-                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">80%</div>
+                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80"
+                                     aria-valuemin="0" aria-valuemax="100" style="width: 80%;">80%
+                                </div>
                             </div>
                             <small class="text-muted">Dmitry Ivaniuk, 24 Sep 2014 / 80%</small>
                         </a>
                         <a class="list-group-item" href="#">
                             <strong>Lorem ipsum dolor</strong>
                             <div class="progress progress-small progress-striped active">
-                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%;">95%</div>
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="95"
+                                     aria-valuemin="0" aria-valuemax="100" style="width: 95%;">95%
+                                </div>
                             </div>
                             <small class="text-muted">John Doe, 23 Sep 2014 / 95%</small>
                         </a>
                         <a class="list-group-item" href="#">
                             <strong>Cras suscipit ac quam at tincidunt.</strong>
                             <div class="progress progress-small">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div>
+                                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0"
+                                     aria-valuemax="100" style="width: 100%;">100%
+                                </div>
                             </div>
-                            <small class="text-muted">John Doe, 21 Sep 2014 /</small><small class="text-success"> Done</small>
+                            <small class="text-muted">John Doe, 21 Sep 2014 /</small>
+                            <small class="text-success"> Done</small>
                         </a>
                     </div>
                     <div class="panel-footer text-center">
-                        <a href="pages-tasks.html">Show all tasks</a>
+                        <a>Show all tasks</a>
                     </div>
                 </div>
             </li>
@@ -228,9 +191,8 @@
             <!-- START WIDGETS -->
             <div class="row">
                 <div class="col-md-3">
-
                     <!-- START WIDGET MESSAGES -->
-                    <div class="widget widget-default widget-item-icon" onclick="location.href='pages-messages.html';">
+                    <div class="widget widget-default widget-item-icon">
                         <div class="widget-item-left">
                             <span class="fa fa-envelope"></span>
                         </div>
@@ -240,7 +202,8 @@
                             <div class="widget-subtitle">In your Dataset</div>
                         </div>
                         <div class="widget-controls">
-                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip"
+                               data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
                         </div>
                     </div>
                     <!-- END WIDGET MESSAGES -->
@@ -249,7 +212,7 @@
                 <div class="col-md-3">
 
                     <!-- START WIDGET MESSAGES -->
-                    <div class="widget widget-default widget-item-icon" onclick="location.href='pages-messages.html';">
+                    <div class="widget widget-default widget-item-icon">
                         <div class="widget-item-left">
                             <span class="fa fa-envelope"></span>
                         </div>
@@ -259,7 +222,8 @@
                             <div class="widget-subtitle">In your Dataset</div>
                         </div>
                         <div class="widget-controls">
-                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip"
+                               data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
                         </div>
                     </div>
                     <!-- END WIDGET MESSAGES -->
@@ -278,7 +242,8 @@
                             <div class="widget-subtitle">In your Dataset</div>
                         </div>
                         <div class="widget-controls">
-                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip"
+                               data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
                         </div>
                     </div>
                     <!-- END WIDGET REGISTRED -->
@@ -291,7 +256,8 @@
                         <div class="widget-big-int plugin-clock">00:00</div>
                         <div class="widget-subtitle plugin-date">Loading...</div>
                         <div class="widget-controls">
-                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="left" title="Remove Widget"><span class="fa fa-times"></span></a>
+                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip"
+                               data-placement="left" title="Remove Widget"><span class="fa fa-times"></span></a>
                         </div>
                         <div class="widget-buttons widget-c3">
                             <div class="col">
@@ -321,44 +287,39 @@
 
                         <!-- Standar Form -->
                         <h4>Select files from your computer</h4>
-                        <form action="" method="post" enctype="multipart/form-data" id="js-upload-form">
+                        <form action="uploadFile" method="POST" enctype="multipart/form-data" id="submitForm"
+                              enctype="multipart/form-data">
                             <div class="form-inline">
                                 <div class="form-group">
-                                    <input type="file" name="files[]" id="js-upload-files" multiple>
+                                    <input type="file" name="file" id="js-upload-files" multiple>
                                 </div>
-                                <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Upload
-                                    files
+                                <button type="submit" class="btn btn-sm btn-primary" onclick="uploadJqueryForm()"
+                                        id="js-upload-submit">Upload file
                                 </button>
                             </div>
                         </form>
-
+                        <div id="result"></div>
+                        <div id="loading">
+                            <p><img src="resources/img/jquery/loading-overlay.gif"/>
+                            </p>
+                        </div>
                         <!-- Drop Zone -->
                         <h4>Or drag and drop files below</h4>
                         <div class="upload-drop-zone" id="drop-zone">
                             Just drag and drop files here
                         </div>
 
-                        <!-- Progress Bar -->
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
-                                 aria-valuemax="100" style="width: 60%;">
-                                <span class="sr-only">60% Complete</span>
-                            </div>
-                        </div>
-
                         <!-- Upload Finished -->
                         <div class="js-upload-finished">
-                            <h3>Processed files</h3>
-                            <div class="list-group">
-                                <a href="#" class="list-group-item list-group-item-success"><span
-                                        class="badge alert-success pull-right">Success</span>image-01.jpg</a>
-                            </div>
+                            <h3>Select Previous Uploaded Files</h3>
+
+                        </div>
+                        <div>
+                            <select onchange="selectDatabase()" id="myselect" name="myselect"></select>
                         </div>
                     </div>
                 </div>
             </div> <!-- /container -->
-
-
         </div>
         <!-- END PAGE CONTENT WRAPPER -->
     </div>
@@ -392,6 +353,8 @@
 <!-- END PRELOADS -->
 
 <!-- START SCRIPTS -->
+<%--<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>--%>
+
 <!-- START PLUGINS -->
 <script type="text/javascript" src="resources/js/plugins/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="resources/js/plugins/jquery/jquery-ui.min.js"></script>
@@ -400,7 +363,8 @@
 
 <!-- START THIS PAGE PLUGINS-->
 <script type='text/javascript' src='resources/js/plugins/icheck/icheck.min.js'></script>
-<script type="text/javascript" src="resources/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+<script type="text/javascript"
+        src="resources/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
 <script type="text/javascript" src="resources/js/plugins/scrolltotop/scrolltopcontrol.js"></script>
 
 <script type="text/javascript" src="resources/js/plugins/morris/raphael-min.js"></script>
@@ -423,6 +387,21 @@
 <script type="text/javascript" src="resources/js/actions.js"></script>
 
 <script type="text/javascript" src="resources/js/demo_dashboard.js"></script>
+<script src="resources/js/plugins/jquery/jquery.min.js"></script>
+<script src="resources/js/plugins/jquery/jquery.form.js"></script>
+<script src="resources/js/custom.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#loading').hide();
+        $.getJSON("/datasets", function (json) {
+            $('#myselect').empty();
+            $.each(json.Files, function (i, obj) {
+                $('#myselect').append($('<option>').text(obj.File_Name).attr('value', obj.val));
+            });
+        });
+    });
+</script>
 <!-- END TEMPLATE -->
 <!-- END SCRIPTS -->
 </body>
