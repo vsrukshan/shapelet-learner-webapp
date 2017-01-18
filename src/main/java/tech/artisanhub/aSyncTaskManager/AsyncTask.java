@@ -5,7 +5,7 @@ import tech.artisanhub.shapeletTrainer.LearnShapelets;
 
 public class AsyncTask {
     @Async
-    public void doAsyncTask(String datasetName){
+    public void doAsyncTask(String datasetName) throws Exception {
         LearnShapelets.learnShapelets(datasetName);
     }
 }

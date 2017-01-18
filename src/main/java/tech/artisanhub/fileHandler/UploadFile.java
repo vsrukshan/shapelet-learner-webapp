@@ -13,12 +13,18 @@ import java.io.FileOutputStream;
 public class UploadFile {
 
     private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
+    private static String allowedfileExtentions = ".csv,.arff";
 
     public static String uploadSingleFile(MultipartFile file) {
         if (!file.isEmpty()) {
+            String fileName = file.getOriginalFilename();
             try {
                 byte[] bytes = file.getBytes();
-
+                int lastIndex = fileName.lastIndexOf('.');
+                String currFileExtension = fileName.substring(lastIndex, fileName.length());
+                if (!allowedfileExtentions.contains(currFileExtension)) {
+                    return "Uploading failed. Please upload a CSV file or an ARFF file";
+                }
                 // Creating the directory to store file
                 String rootPath = System.getProperty("catalina.home");
                 File dir = new File(rootPath + File.separator + "uploads");
@@ -36,13 +42,13 @@ public class UploadFile {
                 logger.info("Server File Location="
                         + serverFile.getAbsolutePath());
 
-                return file.getOriginalFilename();
+
+                return "You successfully uploaded file=" + fileName;
             } catch (Exception e) {
-                return "You failed to upload " + file.getOriginalFilename() + " => " + e.getMessage();
+                return "You failed to upload " + fileName + " => " + e.getMessage();
             }
         } else {
-            return "You failed to upload " + file.getOriginalFilename()
-                    + " because the file was empty.";
+            return "You failed to upload because the file was empty.";
         }
     }
 

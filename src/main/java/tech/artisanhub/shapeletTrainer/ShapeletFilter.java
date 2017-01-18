@@ -13,9 +13,7 @@ package tech.artisanhub.shapeletTrainer;
 
 import weka.core.*;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.*;
 
 public class ShapeletFilter {
@@ -37,7 +35,6 @@ public class ShapeletFilter {
     }
 
     /**
-     *
      * @param k - the number of shapelets to be generated
      */
     public ShapeletFilter(int k) {
@@ -49,8 +46,7 @@ public class ShapeletFilter {
     }
 
     /**
-     *
-     * @param k - the number of shapelets to be generated
+     * @param k                 - the number of shapelets to be generated
      * @param minShapeletLength - minimum length of shapelets
      * @param maxShapeletLength - maximum length of shapelets
      */
@@ -63,7 +59,6 @@ public class ShapeletFilter {
     }
 
     /**
-     *
      * @param k - the number of shapelets to be generated
      */
     public void setNumberOfShapelets(int k) {
@@ -71,7 +66,6 @@ public class ShapeletFilter {
     }
 
     /**
-     *
      * @param minShapeletLength - minimum length of shapelets
      * @param maxShapeletLength - maximum length of shapelets
      */
@@ -81,7 +75,6 @@ public class ShapeletFilter {
     }
 
     /**
-     *
      * @param inputFormat - the format of the input data
      * @return a new Instances object in the desired output format
      * @throws Exception - if all required attributes of the filter are not initialised correctly
@@ -121,9 +114,8 @@ public class ShapeletFilter {
     }
 
     /**
-     *
      * @param data - the input data to be transformed (and to find the shapelets if this is the first
-     * run)
+     *             run)
      * @return the transformed Instances in terms of the distance from each shapelet
      * @throws Exception - if the number of shapelets or the length parameters specified are incorrect
      */
@@ -150,7 +142,7 @@ public class ShapeletFilter {
             this.shapelets = findBestKShapeletsCache(this.numShapelets, data, this.minShapeletLength,
                     this.maxShapeletLength); // get k shapelets ATTENTION
             this.shapeletsTrained = true;
-            System.out.println("\n"+shapelets.size() + " Shapelets have been generated");
+            System.out.println("\n" + shapelets.size() + " Shapelets have been generated");
         }
 
 //        Instances output = determineOutputFormat(data);
@@ -165,7 +157,7 @@ public class ShapeletFilter {
 //            }
 //            toAdd.setValue(this.shapelets.size(), data.instance(i).classValue());
 //            output.add(toAdd);
- //       }
+        //       }
         return shapelets;
     }
 
@@ -179,9 +171,8 @@ public class ShapeletFilter {
     }
 
     /**
-     *
-     * @param numShapelets - the target number of shapelets to generate
-     * @param data - the data that the shapelets will be taken from
+     * @param numShapelets      - the target number of shapelets to generate
+     * @param data              - the data that the shapelets will be taken from
      * @param minShapeletLength - the minimum length of possible shapelets
      * @param maxShapeletLength - the maximum length of possible shapelets
      * @return an ArrayList of Shapelet objects in order of their fitness (by infoGain, seperationGap
@@ -232,7 +223,7 @@ public class ShapeletFilter {
                     // CANDIDATE ESTABLISHED - got original series, length and starting position
                     // extract relevant part into a double[] for processing
                     double[] candidate = new double[length];
-                    rawContent = new Double[length +1];
+                    rawContent = new Double[length + 1];
                     for (int m = start; m < start + length; m++) {
                         candidate[m - start] = wholeCandidate[m];
                         rawContent[m - start] = wholeCandidate[m];
@@ -241,7 +232,7 @@ public class ShapeletFilter {
                     // znorm candidate here so it's only done once, rather than in each distance calculation
                     rawContent[length] = data.instance(i).classValue();
                     candidate = zNorm(candidate, false);
-                    Shapelet candidateShapelet = checkCandidate(candidate, data, i, start, classDistributions,rawContent);
+                    Shapelet candidateShapelet = checkCandidate(candidate, data, i, start, classDistributions, rawContent);
                     seriesShapelets.add(candidateShapelet);
                 }
             }
@@ -280,7 +271,6 @@ public class ShapeletFilter {
     }
 
     /**
-     *
      * @param shapelets the input Shapelets to remove self similar Shapelet objects from
      * @return a copy of the input ArrayList with self-similar shapelets removed
      */
@@ -317,12 +307,11 @@ public class ShapeletFilter {
     }
 
     /**
-     *
-     * @param k the maximum number of shapelets to be returned after combining the two lists
-     * @param kBestSoFar the (up to) k best shapelets that have been observed so far, passed in to
-     * combine with shapelets from a new series
+     * @param k                   the maximum number of shapelets to be returned after combining the two lists
+     * @param kBestSoFar          the (up to) k best shapelets that have been observed so far, passed in to
+     *                            combine with shapelets from a new series
      * @param timeSeriesShapelets the shapelets taken from a new series that are to be merged in
-     * descending order of fitness with the kBestSoFar
+     *                            descending order of fitness with the kBestSoFar
      * @return an ordered ArrayList of the best k (or less) Shapelet objects from the union of the
      * input ArrayLists
      */
@@ -347,7 +336,6 @@ public class ShapeletFilter {
     }
 
     /**
-     *
      * @param data the input data set that the class distributions are to be derived from
      * @return a TreeMap<Double, Integer> in the form of <Class Value, Frequency>
      */
@@ -373,14 +361,13 @@ public class ShapeletFilter {
     }
 
     /**
-     *
      * @param candidate the data from the candidate Shapelet
-     * @param data the entire data set to compare the candidate to
-     * @param data the entire data set to compare the candidate to
+     * @param data      the entire data set to compare the candidate to
+     * @param data      the entire data set to compare the candidate to
      * @return a TreeMap<Double, Integer> in the form of <Class Value, Frequency>
      */
     private static Shapelet checkCandidate(double[] candidate, Instances data, int seriesId,
-                                           int startPos, TreeMap classDistribution,Double[] rawContent) {
+                                           int startPos, TreeMap classDistribution, Double[] rawContent) {
 
         // create orderline by looping through data set and calculating the subsequence
         // distance from candidate to all data, inserting in order.
@@ -421,7 +408,6 @@ public class ShapeletFilter {
     }
 
     /**
-     *
      * @param candidate
      * @param timeSeriesIns
      * @return
@@ -458,7 +444,6 @@ public class ShapeletFilter {
     }
 
     /**
-     *
      * @param input
      * @param classValOn
      * @return
@@ -499,23 +484,16 @@ public class ShapeletFilter {
     }
 
     /**
-     *
      * @param fileName
      * @return
      */
-    public static Instances loadData(String fileName) {
+    public static Instances loadData(String fileName) throws IOException {
         Instances data = null;
-        try {
-            FileReader r;
-            r = new FileReader(fileName);
-            data = new Instances(r);
+        FileReader r;
+        r = new FileReader(fileName);
+        data = new Instances(r);
+        data.setClassIndex(data.numAttributes() - 1);
 
-            data.setClassIndex(data.numAttributes() - 1);
-        }
-        catch (Exception e) {
-            System.out.println(" Error =" + e + " in method loadData");
-            e.printStackTrace();
-        }
         return data;
     }
 
@@ -534,8 +512,6 @@ public class ShapeletFilter {
         }
         return false;
     }
-
-
 
 
     // /**
