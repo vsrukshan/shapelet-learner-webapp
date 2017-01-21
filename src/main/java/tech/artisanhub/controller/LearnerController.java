@@ -2,6 +2,10 @@ package tech.artisanhub.controller;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +23,9 @@ import java.io.IOException;
 @RequestMapping("/learner")
 public class LearnerController {
 
+    @Autowired
+    private SimpMessagingTemplate template;
+
 
     @RequestMapping(value = "/start", method = RequestMethod.GET)
     public String startProcess(@RequestParam("dataset") String name, ModelMap model) {
@@ -28,7 +35,7 @@ public class LearnerController {
         ctx.refresh();
         AsyncTask task = ctx.getBean(AsyncTask.class);
         try {
-            task.doAsyncTask(name);
+            task.doAsyncTask(name,template);
         } catch (Exception e) {
             System.out.println(name + "Leaning has been interrupted");
             //Send an email
@@ -57,6 +64,18 @@ public class LearnerController {
             return "Error while reading from the properties.xml file";
         }
 
+    }
+
+    @MessageMapping("/hello")
+    @SendTo("/topic/greetings")
+    public Greeting greeting(HelloMessage message) throws Exception {
+        Thread.sleep(1000); // simulated delay
+        return new Greeting("Hello, " + message.getName() + "!");
+    }
+
+    public void fireGreeting() {
+        System.out.println("Fire");
+        this.template.convertAndSend("/topic/greetings", new Greeting("Fire"));
     }
 
 }

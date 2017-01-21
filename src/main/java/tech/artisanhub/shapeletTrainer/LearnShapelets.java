@@ -2,7 +2,10 @@ package tech.artisanhub.shapeletTrainer;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.xml.sax.SAXException;
+import tech.artisanhub.controller.Greeting;
 import tech.artisanhub.fileHandler.FileOperations;
 import weka.core.Instances;
 
@@ -12,7 +15,9 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class LearnShapelets {
-    public static void learnShapelets(String datasetName) throws Exception {
+
+
+    public static void learnShapelets(String datasetName,SimpMessagingTemplate template) throws Exception {
         long startTime = System.currentTimeMillis();
 
 
@@ -48,7 +53,7 @@ public class LearnShapelets {
         int shapeletClusterSize = (int) Math.sqrt(generatedShapelets.size()); //this defines the threshold. Put a larger number to detect all the events
         ArrayList<Shapelet> mergedShapelets = new MergeShapelets().mergeShapelets(generatedShapelets, shapeletClusterSize); //meerging shapelets
         ArrayList<Shapelet> finalOutputShapelets = new ImportantShapelets().GetImportantShapelets(mergedShapelets, data, arr); //find important shapelets
-        saveShapeleteStats(finalOutputShapelets, data.get(1).numValues() - 1, datasetName);
+        saveShapeleteStats(finalOutputShapelets, data.get(1).numValues() - 1, datasetName,template);
 
 
         long endTime = System.currentTimeMillis();
@@ -56,7 +61,7 @@ public class LearnShapelets {
         System.out.println("\nExecution time in milli seconds: " + totalTime);
     }
 
-    private static void saveShapeleteStats(ArrayList<Shapelet> shapelets, int noOfColumns, String datasetname) throws IOException, ParserConfigurationException, SAXException {
+    private static void saveShapeleteStats(ArrayList<Shapelet> shapelets, int noOfColumns, String datasetname,SimpMessagingTemplate template) throws IOException, ParserConfigurationException, SAXException {
         int size = 0;
         int startPos = 0;
         int shapeletVal = 0;
@@ -115,5 +120,8 @@ public class LearnShapelets {
         datasetname = datasetname.replace(".csv", "");
         datasetname = datasetname.replace(".arff", "");
         FileOperations.saveImportantShapelets(finalJsonObject, datasetname);
+        System.out.println("Fire");
+        template.convertAndSend("/topic/greetings", new Greeting("Fire"));
+
     }
 }
