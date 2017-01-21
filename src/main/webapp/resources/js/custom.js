@@ -10,9 +10,9 @@ function uploadJqueryForm() {
     $("#submitForm").ajaxForm({
         success: function (data) {
             $('#result').html(data);
-            var i, text="";
+            var i, text = "";
             var res = data.split(".");
-            for (i = 0; i < res.length-1; i++) {
+            for (i = 0; i < res.length - 1; i++) {
                 text += res[i];
             }
             startLearner(text);
@@ -42,19 +42,14 @@ function showFilesOnServer() {
 }
 
 function selectDatabase() {
-    var x = document.getElementById('myselect').value;
-    var i, text="";
-    var res = x.split(".");
-    for (i = 0; i < res.length-1; i++) {
-        text += res[i];
-    }
+    var text = document.getElementById('myselect').value;
     startLearner(text);
 }
 
 function startLearner(text) {
-    var passerName = "/learner/"+ text;
+    var passerName = "/learner/start?dataset=" + text;
     $.ajax({
-        type:'Get',
+        type: 'Get',
         url: passerName,
         success: function (data) {
             var jsonPretty = JSON.stringify(data, null, 4);

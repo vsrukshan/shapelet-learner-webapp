@@ -13,6 +13,7 @@
     <!-- CSS INCLUDE -->
     <link rel="stylesheet" type="text/css" id="theme" href="../../resources/css/theme-default.css"/>
     <link rel="stylesheet" type="text/css" href="../../resources/css/custom.css"/>
+
     <!-- EOF CSS INCLUDE -->
 </head>
 <body>
@@ -316,6 +317,21 @@
                         </div>
                         <div>
                             <select onchange="selectDatabase()" id="myselect" name="myselect"></select>
+                        </div>
+
+                        <div class="js-upload-finished">
+                            <h3></h3>
+
+                        </div>
+                        <div>
+                          <form method="GET" action="/redirect">
+                            <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submited"> Proceed
+
+                            </button>
+                            </form>
+                        </div>
+                        <div class="row">
+                            <canvas id="canvas"></canvas>
                         </div>
                     </div>
                 </div>

@@ -190,16 +190,48 @@
 
         <!-- PAGE CONTENT WRAPPER -->
         <div class="page-content-wrap">
-            <!-- START WIDGETS -->
-            <div class="row">
-                <canvas id="canvas"></canvas>
+            <ul class="nav nav-pills">
+                <li id="tab0" style="visibility: hidden" class="active"><a data-toggle="pill" href="#event0">Event 0</a></li>
+                <li id="tab1" style="visibility: hidden"><a data-toggle="pill" href="#event1">Event 1</a></li>
+                <li id="tab2" style="visibility: hidden"><a data-toggle="pill" href="#event2">Event 2</a></li>
+                <li id="tab3" style="visibility: hidden"><a data-toggle="pill" href="#event3">Event 3</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="event0" class="tab-pane fade in active">
+                    <div class="row">
+                        <canvas id="canvas0"></canvas>
+                    </div>
+                    <div style="text-align:center;">
+                        <a id="button0" onclick="getChart()" class="myButton" style="visibility: hidden">Generate Query</a>
+                    </div>
+                </div>
+                <div id="event1" class="tab-pane fade">
+                    <div class="row">
+                        <canvas id="canvas1"></canvas>
+                    </div>
+                    <div style="text-align:center;">
+                        <a id="button1" onclick="getChart()" class="myButton" style="visibility: hidden">Generate Query</a>
+                    </div>
+                </div>
+                <div id="event2" class="tab-pane fade">
+                    <div class="row">
+                        <canvas id="canvas2"></canvas>
+                    </div>
+                    <div style="text-align:center;">
+                        <a id="button2" onclick="getChart()" class="myButton" style="visibility: hidden">Generate Query</a>
+                    </div>
+                </div>
+                <div id="event3" class="tab-pane fade">
+                    <div class="row">
+                        <canvas id="canvas3"></canvas>
+                    </div>
+                    <div style="text-align:center;">
+                        <a id="button3" onclick="getChart()" class="myButton" style="visibility: hidden">Generate Query</a>
+                    </div>
+                </div>
             </div>
-            <div style="text-align:center;">
-                <a id="button" onclick="getChart()" class="myButton">Proceed</a>
-            </div>
-
-            <!-- END WIDGETS -->
         </div>
+
         <!-- END PAGE CONTENT WRAPPER -->
     </div>
     <!-- END PAGE CONTENT -->
@@ -215,6 +247,11 @@
 <!-- START PLUGINS -->
 <script type="text/javascript" src="../../resources/js/plugins/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="../../resources/js/plugins/jquery/jquery-ui.min.js"></script>
+<script>
+    $(document).ready(function () {
+        drawGraph('iris');
+    });
+</script>
 <script type="text/javascript" src="../../resources/js/plugins/bootstrap/bootstrap.min.js"></script>
 <!-- END PLUGINS -->
 

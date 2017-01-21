@@ -1,27 +1,36 @@
-var datasetValue = [];
-var lableNames = [];
-var count = 7;
-var data = [
-    [19, 20, 31, 18, 55, 6, 7],
-    [10, 25, 34, 12, 54, 6, 37],
-    [11, 21, 23, 11, 50, 6, 57],
-    [12, 22, 23, 19, 51, 6, 17],
-    [18, 24, 30, 15, 35, 16, 7],
-    [16, 22, 35, 14, 25, 6, 7],
-    [10, 27, 33, 14, 35, 6, 7]
-];
+function drawGraph(datasetName) {
+    $(document).off(".firstCall");
+    $.ajax({
+        url: 'learner/results?dataset=' + datasetName,
+        data: {
+            format: 'json'
+        },
+        error: function () {
+            $('#info').html('<p>An error has occurred</p>');
+        },
+        dataType: 'json',
+        success: function (data) {
+            var jsonPretty = JSON.stringify(data, null, 4);
 
-for (var j = 0; j < count; j++) {
-    datasetValue[j] =
-    {
-        borderColor: getRandomColor(),
-        title: '2013',
-        fill: false,
-        lineTension: 0,
-        label: '# shapelet',
-        data: data[j]
-    };
-    lableNames[j] = "Col " + (j + 1);
+            var eventCount = data.EventCount;
+            var datasetName = data.DatasetName;
+            var dataObj = data.Data;
+            for (var key in dataObj) {
+                var dataset = [];
+                var dataArray = dataObj[key].Data;
+                for (var shapelet in dataArray) {
+                    dataset[shapelet] = [];
+                    var shapeletEvent = dataArray[shapelet].EventType;
+                    var shapeletValues = dataArray[shapelet].Values;
+                    for (var count=0; count< shapeletValues.length; count++) {
+                        dataset[shapelet][count] = shapeletValues[count];
+                    }
+                }
+                draw(dataset,key);
+            }
+        },
+        type: 'GET'
+    });
 }
 
 function getRandomColor() {
@@ -33,47 +42,74 @@ function getRandomColor() {
     return color;
 }
 
-var ctx = document.getElementById("canvas");
-var lineChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: lableNames,
-        datasets: datasetValue
-    },
-    backgroundColor: 'transparent',
-    borderColor: '#F78511',
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
+function draw(dataset, graphNo) {
+    var datasetValue = [];
+    var lableNames = [];
+    var data = dataset;
+
+    for (var j = 0; j < dataset.length; j++) {
+        datasetValue[j] =
+        {
+            borderColor: getRandomColor(),
+            title: '2013',
+            fill: false,
+            lineTension: 0,
+            label: '# shapelet',
+            data: data[j]
+        };
     }
-});
+    var len = dataset[0].length;
+    for (var j=0; j<len; j++){
+        lableNames[j] = "Col " + (j + 1);
+    }
 
-ctx.onclick = function (e) {
-    // var helpers = Chart.helpers;
-    //
-    // var eventPosition = helpers.getRelativePosition(e, lineChart.chart);
-    // var mouseX = eventPosition.x;
-    // var mouseY = eventPosition.y;
-    //
-    // var activePoints = lineChart.getElementAtEvent(e);
-    // console.log(activePoints);
-    // // var dataset = lineChart.getDatasetAtEvent(e);
-    // // console.log(dataset);
-    // var meta = lineChart.getDatasetMeta(0);
-    // var x = meta.data[0]._model.x
-    // console.log(activePoints);
-    //
-    // var firstPoint = activePoints[0];
-    // console.log(firstPoint);
-    // if (firstPoint !== undefined) {
-    //     alert(firstPoint.index + ': ' + firstPoint.label);
-    // }
 
-  
-    
-};
+    var ctx = document.getElementById("canvas"+ graphNo);
+    document.getElementById('button'+graphNo).style.visibility = 'visible';
+    document.getElementById('tab'+graphNo).style.visibility = 'visible';
+    var lineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: lableNames,
+            datasets: datasetValue
+        },
+        backgroundColor: 'transparent',
+        borderColor: '#F78511',
+        options: {
+            responsive : true,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+
+        }
+    });
+
+    ctx.onclick = function (evt) {
+        // var helpers = Chart.helpers;
+        //
+        // var eventPosition = helpers.getRelativePosition(e, lineChart.chart);
+        // var mouseX = eventPosition.x;
+        // var mouseY = eventPosition.y;
+        //
+         var activePoints = lineChart.getElementAtEvent(evt);
+        console.log(activePoints);
+        // console.log(activePoints);
+        // // var dataset = lineChart.getDatasetAtEvent(e);
+        // // console.log(dataset);
+        // var meta = lineChart.getDatasetMeta(0);
+        // var x = meta.data[0]._model.x
+        // console.log(activePoints);
+        //
+        // var firstPoint = activePoints[0];
+        // console.log(firstPoint);
+        // if (firstPoint !== undefined) {
+        //     alert(firstPoint.index + ': ' + firstPoint.label);
+        // }
+
+
+    };
+}
