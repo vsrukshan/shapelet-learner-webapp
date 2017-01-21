@@ -2,12 +2,15 @@
 <html>
 <head>
     <title>Hello WebSocket</title>
-    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/main.css" rel="stylesheet">
-    <script src="/webjars/jquery/jquery.min.js"></script>
-    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
-    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
-    <script src="/app.js"></script>
+    <link href="resources/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="resources/css/websockets.css" rel="stylesheet">
+    <script src="resources/js/plugins/jquery/jquery.min.js"></script>
+
+    <%--<script src="/webjars/sockjs-client/sockjs.min.js"></script>--%>
+    <script src="resources/js/plugins/websockets/sockjs.min.js"></script>
+    <%--<script src="/webjars/stomp-websocket/stomp.min.js"></script>--%>
+    <script src="resources/js/plugins/websockets/stomp.min.js"></script>
+    <script src="resources/js/websockets.js"></script>
 </head>
 <body>
 <noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being
