@@ -1,6 +1,5 @@
 package tech.artisanhub.controller;
 
-import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -13,8 +12,8 @@ import org.xml.sax.SAXException;
 import tech.artisanhub.aSyncTaskManager.AppConfig;
 import tech.artisanhub.aSyncTaskManager.AsyncTask;
 import tech.artisanhub.fileHandler.FileOperations;
-import tech.artisanhub.shapeletTrainer.LearnShapelets;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import tech.artisanhub.fileHandler.GenerateRespond;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
@@ -35,7 +34,7 @@ public class LearnerController {
         ctx.refresh();
         AsyncTask task = ctx.getBean(AsyncTask.class);
         try {
-            task.doAsyncTask(name,template);
+            task.doAsyncTask(name, template);
         } catch (Exception e) {
             System.out.println(name + "Leaning has been interrupted");
             //Send an email
@@ -65,17 +64,4 @@ public class LearnerController {
         }
 
     }
-
-    @MessageMapping("/hello")
-    @SendTo("/topic/greetings")
-    public Greeting greeting(HelloMessage message) throws Exception {
-        Thread.sleep(1000); // simulated delay
-        return new Greeting("Hello, " + message.getName() + "!");
-    }
-
-    public void fireGreeting() {
-        System.out.println("Fire");
-        this.template.convertAndSend("/topic/greetings", new Greeting("Fire"));
-    }
-
 }

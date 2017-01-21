@@ -2,10 +2,8 @@ package tech.artisanhub.shapeletTrainer;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.xml.sax.SAXException;
-import tech.artisanhub.controller.Greeting;
 import tech.artisanhub.fileHandler.FileOperations;
 import weka.core.Instances;
 
@@ -119,9 +117,7 @@ public class LearnShapelets {
         System.out.println(finalJsonObject);
         datasetname = datasetname.replace(".csv", "");
         datasetname = datasetname.replace(".arff", "");
-        FileOperations.saveImportantShapelets(finalJsonObject, datasetname);
-        System.out.println("Fire");
-        template.convertAndSend("/topic/greetings", new Greeting("Fire"));
+        FileOperations.saveImportantShapelets(finalJsonObject, datasetname,template);
 
     }
 }
