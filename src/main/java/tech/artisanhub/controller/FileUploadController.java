@@ -1,11 +1,5 @@
 package tech.artisanhub.controller;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,13 +14,10 @@ import tech.artisanhub.fileHandler.UploadFile;
 @Controller
 public class FileUploadController {
 
-    private static final Logger logger = LoggerFactory
-            .getLogger(FileUploadController.class);
-
     /**
      * Upload single file using Spring Controller
      */
-    @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
+    @RequestMapping(value = "uploadFile", method = RequestMethod.POST)
     public
     @ResponseBody
     String uploadFileHandler(@RequestParam("file") MultipartFile file) {

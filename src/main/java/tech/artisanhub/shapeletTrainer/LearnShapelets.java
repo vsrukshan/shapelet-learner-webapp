@@ -3,6 +3,7 @@ package tech.artisanhub.shapeletTrainer;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.ui.RefineryUtilities;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import tech.artisanhub.fileHandler.FileOperations;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class LearnShapelets {
+
     public static void learnShapelets(String datasetName) throws Exception {
         long startTime = System.currentTimeMillis();
 
@@ -28,9 +30,9 @@ public class LearnShapelets {
         for (int i = 0; i < size; i++) {
             if (i > 4000) {
                 data.remove(0);
+
             }
         }
-
         System.out.print(data.size());
         int k = Integer.MAX_VALUE; // number of shapelets
         int minLength = 2;
@@ -60,11 +62,13 @@ public class LearnShapelets {
     }
 
     private static void saveShapeleteStats(ArrayList<Shapelet> shapelets, int noOfColumns, String datasetname) throws IOException {
+
         int size = 0;
         int startPos = 0;
         int shapeletVal = 0;
         int sizeOfTheShapelet = 0;
         int eventCount = 0;
+
         int contentSize = 0;
 
         JSONArray currRow;
@@ -73,7 +77,6 @@ public class LearnShapelets {
         JSONObject finalJsonObject = new JSONObject();
         JSONArray jsonArraytMainEvent = new JSONArray();
         JSONObject jsonObjectPerEvent;
-
 
         for (Shapelet val : shapelets) {
             jsonObjectPerEvent = new JSONObject();
@@ -86,6 +89,7 @@ public class LearnShapelets {
                     size = val.contentInMergedShapelets.get(i).size() - 4;
                     startPos = val.contentInMergedShapelets.get(i).get(size + 2).intValue();
                     shapeletVal = 0;
+
                     currRow = new JSONArray();
                     currRowObj = new JSONObject();
                     for (int j = 0; j < noOfColumns; j++) {
@@ -97,6 +101,7 @@ public class LearnShapelets {
                             shapeletVal++;
                         } else {
                             currRow.add(val.contentInMergedShapelets.get(i).get(j - shapeletVal));
+
                         }
                     }
                     currRowObj.put("EventType", val.contentInMergedShapelets.get(i).get(contentSize - 1).intValue()); //add the correct val
@@ -104,11 +109,12 @@ public class LearnShapelets {
                     allRows.add(currRowObj);
 
                 }
+
                 jsonObjectPerEvent.put("Data", allRows);
                 jsonObjectPerEvent.put("MainEvent", eventCount);
                 jsonArraytMainEvent.add(jsonObjectPerEvent);
-            }
 
+            }
 
         }
         finalJsonObject.put("Data", jsonArraytMainEvent);
@@ -118,5 +124,7 @@ public class LearnShapelets {
         datasetname = datasetname.replace(".csv","");
         datasetname = datasetname.replace(".arff","");
         FileOperations.saveImportantShapelets(finalJsonObject, datasetname);
+
+
     }
 }

@@ -22,12 +22,14 @@ public class FileOperations {
 
         for (File f : files) {
             jsonObject = new JSONObject();
-            jsonObject.put("Last Modified", convertTime(f.lastModified()));
-            jsonObject.put("File Name", f.getName());
+
+            jsonObject.put("Last_Modified",convertTime(f.lastModified()));
+            jsonObject.put("File_Name",f.getName());
             jsonArray.add(jsonObject);
         }
         JSONObject mainObj = new JSONObject();
-        mainObj.put("Files on Server", jsonArray);
+        mainObj.put("Files",jsonArray);
+
         return mainObj;
     }
 

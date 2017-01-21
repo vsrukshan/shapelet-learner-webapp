@@ -33,7 +33,7 @@ public class BarChart_AWT extends ApplicationFrame
         final String ford = "FORD";
         final String speed = "Speed";
         final String millage = "Millage";
-        final String userrating = "User Rating";
+        final String userrating = "tech.artisanhub.HelloMessage Rating";
         final String safety = "safety";
         final DefaultCategoryDataset dataset =
                 new DefaultCategoryDataset( );
