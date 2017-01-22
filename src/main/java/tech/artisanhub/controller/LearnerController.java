@@ -40,12 +40,12 @@ public class LearnerController {
             //Send an email
         }
 
+
         model.addAttribute("test", name);
         return "googleChartsVisualizer";
 
 
     }
-
     @RequestMapping(value = "/results", method = RequestMethod.GET)
     public
     @ResponseBody

@@ -20,9 +20,13 @@ public class DashBoardController {
         return "dashboard";
     }
 
-    @RequestMapping(value = "/graph_visualizer", method = RequestMethod.GET)
+    @RequestMapping(value = "/redirect", method = RequestMethod.GET)
     public String redirect() {
+        return "redirect:graph_visualizer";
+    }
 
+    @RequestMapping(value = "/graph_visualizer", method = RequestMethod.GET)
+    public String graph() {
         return "graph_visualizer";
     }
 
@@ -33,5 +37,7 @@ public class DashBoardController {
         String rootPath = System.getProperty("catalina.home");
         return FileOperations.filesInDir(rootPath + File.separator + "uploads");
     }
+
+
 
 }

@@ -47,59 +47,9 @@
             </li>
             <li class="xn-title">Navigation</li>
             <li><a href="dashboard"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a></li>
-            <li class="xn-openable">
-                <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Pages</span></a>
-                <ul>
-                    <li class="active"><a href="graph_visualizer"><span class="fa fa-users"></span> Shapelet Visualizer</a></li>
-                    <li class="xn-openable">
-                        <a href="#"><span class="fa fa-clock-o"></span> Timeline</a>
-                        <ul>
-                            <li><a href="pages-timeline.html"><span class="fa fa-align-center"></span> Default</a></li>
-                            <li><a href="pages-timeline-simple.html"><span class="fa fa-align-justify"></span> Full
-                                Width</a></li>
-                        </ul>
-                    </li>
-                    <li class="xn-openable">
-                        <a href="#"><span class="fa fa-envelope"></span> Mailbox</a>
-                        <ul>
-                            <li><a href="pages-mailbox-inbox.html"><span class="fa fa-inbox"></span> Inbox</a></li>
-                            <li><a href="pages-mailbox-message.html"><span class="fa fa-file-text"></span> Message</a>
-                            </li>
-                            <li><a href="pages-mailbox-compose.html"><span class="fa fa-pencil"></span> Compose</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="pages-messages.html"><span class="fa fa-comments"></span> Messages</a></li>
-                    <li><a href="pages-calendar.html"><span class="fa fa-calendar"></span> Calendar</a></li>
-                    <li><a href="pages-tasks.html"><span class="fa fa-edit"></span> Tasks</a></li>
-                    <li><a href="pages-content-table.html"><span class="fa fa-columns"></span> Content Table</a></li>
-                    <li><a href="pages-faq.html"><span class="fa fa-question-circle"></span> FAQ</a></li>
-                    <li><a href="pages-search.html"><span class="fa fa-search"></span> Search</a></li>
-                    <li class="xn-openable">
-                        <a href="#"><span class="fa fa-file"></span> Blog</a>
 
-                        <ul>
-                            <li><a href="pages-blog-list.html"><span class="fa fa-copy"></span> List of Posts</a></li>
-                            <li><a href="pages-blog-post.html"><span class="fa fa-file-o"></span>Single Post</a></li>
-                        </ul>
-                    </li>
-                    <li class="xn-openable">
-                        <a href="#"><span class="fa fa-sign-in"></span> Login</a>
-                        <ul>
-                            <li><a href="pages-login.html">App Login</a></li>
-                            <li><a href="pages-login-website.html">Website Login</a></li>
-                            <li><a href="pages-login-website-light.html"> Website Login Light</a></li>
-                        </ul>
-                    </li>
-                    <li class="xn-openable">
-                        <a href="#"><span class="fa fa-warning"></span> Error Pages</a>
-                        <ul>
-                            <li><a href="pages-error-404.html">Error 404 Sample 1</a></li>
-                            <li><a href="pages-error-404-2.html">Error 404 Sample 2</a></li>
-                            <li><a href="pages-error-500.html"> Error 500</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
+            <li class="active"><a href="graph_visualizer"><span class="fa fa-users"></span> Shapelet Visualizer</a></li>
+
         </ul>
         <!-- END X-NAVIGATION -->
     </div>
@@ -167,7 +117,7 @@
                         </a>
                     </div>
                     <div class="panel-footer text-center">
-                        <a href="pages-messages.html">Show all messages</a>
+                        <a>Show all messages</a>
                     </div>
                 </div>
             </li>
@@ -223,7 +173,7 @@
                         </a>
                     </div>
                     <div class="panel-footer text-center">
-                        <a href="pages-tasks.html">Show all tasks</a>
+                        <a>Show all tasks</a>
                     </div>
                 </div>
             </li>
@@ -240,16 +190,48 @@
 
         <!-- PAGE CONTENT WRAPPER -->
         <div class="page-content-wrap">
-            <!-- START WIDGETS -->
-            <div class="row">
-                <canvas id="canvas"></canvas>
+            <ul class="nav nav-pills">
+                <li id="tab0" style="visibility: hidden" class="active"><a data-toggle="pill" href="#event0">Event 0</a></li>
+                <li id="tab1" style="visibility: hidden"><a data-toggle="pill" href="#event1">Event 1</a></li>
+                <li id="tab2" style="visibility: hidden"><a data-toggle="pill" href="#event2">Event 2</a></li>
+                <li id="tab3" style="visibility: hidden"><a data-toggle="pill" href="#event3">Event 3</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="event0" class="tab-pane fade in active">
+                    <div class="row">
+                        <canvas id="canvas0"></canvas>
+                    </div>
+                    <div style="text-align:center;">
+                        <a id="button0" onclick="getChart()" class="myButton" style="visibility: hidden">Generate Query</a>
+                    </div>
+                </div>
+                <div id="event1" class="tab-pane fade">
+                    <div class="row">
+                        <canvas id="canvas1"></canvas>
+                    </div>
+                    <div style="text-align:center;">
+                        <a id="button1" onclick="getChart()" class="myButton" style="visibility: hidden">Generate Query</a>
+                    </div>
+                </div>
+                <div id="event2" class="tab-pane fade">
+                    <div class="row">
+                        <canvas id="canvas2"></canvas>
+                    </div>
+                    <div style="text-align:center;">
+                        <a id="button2" onclick="getChart()" class="myButton" style="visibility: hidden">Generate Query</a>
+                    </div>
+                </div>
+                <div id="event3" class="tab-pane fade">
+                    <div class="row">
+                        <canvas id="canvas3"></canvas>
+                    </div>
+                    <div style="text-align:center;">
+                        <a id="button3" onclick="getChart()" class="myButton" style="visibility: hidden">Generate Query</a>
+                    </div>
+                </div>
             </div>
-            <div style="text-align:center;">
-                <a id="button" onclick="getChart()"  class="myButton">Proceed</a>
-            </div>
-
-            <!-- END WIDGETS -->
         </div>
+
         <!-- END PAGE CONTENT WRAPPER -->
     </div>
     <!-- END PAGE CONTENT -->
@@ -265,6 +247,11 @@
 <!-- START PLUGINS -->
 <script type="text/javascript" src="../../resources/js/plugins/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="../../resources/js/plugins/jquery/jquery-ui.min.js"></script>
+<script>
+    $(document).ready(function () {
+        drawGraph('iris');
+    });
+</script>
 <script type="text/javascript" src="../../resources/js/plugins/bootstrap/bootstrap.min.js"></script>
 <!-- END PLUGINS -->
 
@@ -295,11 +282,10 @@
 
 <script type="text/javascript" src="../../resources/js/demo_dashboard.js"></script>
 <script src="../../resources/js/lineChart.js"></script>
-<script>
+<script type="text/javascript">
     function getChart() {
         var button = document.getElementById("button");
         var canvas = document.getElementById("canvas");
-
     }
 </script>
 <!-- END TEMPLATE -->
