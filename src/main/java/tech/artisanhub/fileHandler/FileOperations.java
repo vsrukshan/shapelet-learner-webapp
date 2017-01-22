@@ -60,7 +60,7 @@ public class FileOperations {
             output.write(finalJsonObject.toJSONString());
             output.close();
             System.out.println(datasetName + ".json successdully saved");
-            template.convertAndSend("/topic/greetings", new GenerateRespond(datasetName+".json"));
+            template.convertAndSend("/topic/greetings", new GenerateRespond(datasetName));
             return true;
         } catch (IOException e) {
             return false;
