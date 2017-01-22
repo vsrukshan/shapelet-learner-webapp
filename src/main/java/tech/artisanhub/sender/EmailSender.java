@@ -1,19 +1,22 @@
 package tech.artisanhub.sender;
 
 import com.sendgrid.*;
+import org.xml.sax.SAXException;
+import tech.artisanhub.fileHandler.XMLParser;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
 public class EmailSender {
-    public static boolean sendEmail(String toEmail, String fromEmail, String emailSubject, String emailContent){
+    public static boolean sendEmail(String toEmail,String emailSubject, String emailContent) throws IOException, SAXException, ParserConfigurationException {
 
-        Email from = new Email(fromEmail);
+        Email from = new Email(XMLParser.getSenderEmail());
         String subject = emailSubject;
         Email to = new Email(toEmail);
         Content content = new Content("text/plain", emailContent);
         Mail mail = new Mail(from, subject, to, content);
 
-        SendGrid sg = new SendGrid("SendGrid API Key");
+        SendGrid sg = new SendGrid(XMLParser.getEmailApiKey());
         Request request = new Request();
 
            try {

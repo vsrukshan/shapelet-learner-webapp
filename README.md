@@ -14,18 +14,18 @@ shapelet-learner-webapp
 1. Intellij Idea can be used to remote debug this.
 [![IDEA_debug _config.png](https://s27.postimg.org/ovr843xir/IDEA_debug_config.png)](https://postimg.org/image/j7kxd7t67/)
 2. Then copy the **Command line argumemts for running remote JVM**.
-3. Open `target\bin\webapp` and add the copied line before `tech.artisanhub.launch.Main \"$@"` and put a `\` after that.
+3. Open `target\bin\webapp` and add the copied line before `tech.artisanhub.launch.Main \"$@"` and put a `\` after that. 
     ##### Example
-```exec "$JAVACMD" $JAVA_OPTS \
-  $EXTRA_JVM_ARGUMENTS \
-  -classpath "$CLASSPATH" \
-  -Dapp.name="webapp" \
-  -Dapp.pid="$$" \
-  -Dapp.repo="$REPO" \
-  -Dbasedir="$BASEDIR" \
-  -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000 \
-  tech.artisanhub.launch.Main \
-  "$@"
-```
+        exec "$JAVACMD" $JAVA_OPTS \
+        $EXTRA_JVM_ARGUMENTS \
+        -classpath "$CLASSPATH" \
+        -Dapp.name="webapp" \
+        -Dapp.pid="$$" \
+        -Dapp.repo="$REPO" \
+        -Dbasedir="$BASEDIR" \
+        -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000 \
+        tech.artisanhub.launch.Main \
+        "$@"
+
 4. Ececute `target\bin\webapp` to start the server.
 
