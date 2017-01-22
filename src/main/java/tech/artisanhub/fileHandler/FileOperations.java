@@ -26,6 +26,9 @@ public class FileOperations {
         for (File f : files) {
             jsonObject = new JSONObject();
 
+            if (f.getName().contains("generatedShapelets")){
+                continue;
+            }
             jsonObject.put("Last_Modified",convertTime(f.lastModified()));
             jsonObject.put("File_Name",f.getName());
             jsonArray.add(jsonObject);
