@@ -288,7 +288,7 @@
 
                         <!-- Standar Form -->
                         <h4>Select files from your computer</h4>
-                        <form action="uploadFile" method="POST" enctype="multipart/form-data" id="submitForm"
+                        <form action="../uploadFile" method="POST" enctype="multipart/form-data" id="submitForm"
                               enctype="multipart/form-data">
                             <div class="form-inline">
                                 <div class="form-group">
