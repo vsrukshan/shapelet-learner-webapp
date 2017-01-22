@@ -112,7 +112,7 @@ public class LearnShapelets {
 
         }
         finalJsonObject.put("Data", jsonArraytMainEvent);
-        finalJsonObject.put("DatasetName", "iris");
+        finalJsonObject.put("DatasetName", datasetname);
         finalJsonObject.put("EventCount", eventCount);
         System.out.println(finalJsonObject);
         datasetname = datasetname.replace(".csv", "");
