@@ -7,7 +7,7 @@ shapelet-learner-webapp
 ### API URL patterns
 * Get uploaded datasets (GET):- [http://localhost:8334/datasets](http://localhost:8334/datasets) returns a **json string**.
 * Upload a dataset (POST):- Post the **multipart file** [http://localhost:8334//uploadFile](http://localhost:8334//uploadFile).
-* Start learning (GET) :- [http://localhost:8334/learner/start?dataset=iris.arff](http://localhost:8334/learner/start?dataset=iris.arff).
+* Start learning (GET) :- [http://localhost:8334/learner/start?dataset=iris.arff&email=artisan@gmail.com](http://localhost:8334/learner/start?dataset=iris.arff&email=artisan@gmail.com).
 * Get generated shapelets **json** file (GET) :- [http://localhost:8334/learner/results?dataset=iris](http://localhost:8334/learner/results?dataset=iris) returns a **json string**.
 
 ### Debugging
