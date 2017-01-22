@@ -67,16 +67,18 @@
             });
         }
 
-        function startProcess(datasetName) {
+        function startProcess(datasetName,email) {
             $.ajax({
                 url: '/learner/start',
-                data: "dataset=" + datasetName,
+                data: "dataset=" + datasetName+"&email="+email,
                 error: function () {
                     $('#infoStartProcess').html('<p>An error has occurred</p>');
                 },
                 success: function (data) {
                     console.log(data);
+                    $('#infoStartProcess').html('<p>'+data+'</p>');
                 },
+                dataType: "text",
                 type: 'GET'
             });
         }
@@ -116,7 +118,8 @@
 <h2>Select the relevant dataset and press start. Page will be automatically redirected to the graph</h2>
 <div>
     <select id="myselect" name="myselect"></select>
-    <button value="Submit" onclick="startProcess(document.getElementById('myselect').value)">Start processing</button>
+    <input id="email" type="text" name="email">
+    <button value="Submit" onclick="startProcess(document.getElementById('myselect').value,document.getElementById('email').value)">Start processing</button>
 </div>
 <div id="infoStartProcess"></div>
 

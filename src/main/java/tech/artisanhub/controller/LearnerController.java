@@ -14,6 +14,7 @@ import tech.artisanhub.aSyncTaskManager.AsyncTask;
 import tech.artisanhub.fileHandler.FileOperations;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import tech.artisanhub.fileHandler.GenerateRespond;
+import tech.artisanhub.sender.EmailSender;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
@@ -29,19 +30,23 @@ public class LearnerController {
     @RequestMapping(value = "/start", method = RequestMethod.GET)
     public
     @ResponseBody
-    String startProcess(@RequestParam("dataset") String name) {
+    String startProcess(@RequestParam("dataset") String name, @RequestParam("email") String toEmail) {
+
+        if (!EmailSender.validate(toEmail)) {
+            return "Process aborted. Please enter a valid email address ";
+        }
 
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
         ctx.register(AppConfig.class);
         ctx.refresh();
         AsyncTask task = ctx.getBean(AsyncTask.class);
         try {
-            task.doAsyncTask(name, template);
+            task.doAsyncTask(name, template, toEmail);
         } catch (Exception e) {
             System.out.println(name + "Leaning has been interrupted");
             //Send an email
         }
-        return "Started processing "+name;
+        return "Started processing " + name;
 
 
     }

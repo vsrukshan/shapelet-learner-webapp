@@ -15,7 +15,7 @@ import java.util.Map;
 public class LearnShapelets {
 
 
-    public static void learnShapelets(String datasetName,SimpMessagingTemplate template) throws Exception {
+    public static void learnShapelets(String datasetName,SimpMessagingTemplate template,String toEmail) throws Exception {
         long startTime = System.currentTimeMillis();
 
 
@@ -51,7 +51,7 @@ public class LearnShapelets {
         int shapeletClusterSize = (int) Math.sqrt(generatedShapelets.size()); //this defines the threshold. Put a larger number to detect all the events
         ArrayList<Shapelet> mergedShapelets = new MergeShapelets().mergeShapelets(generatedShapelets, shapeletClusterSize); //meerging shapelets
         ArrayList<Shapelet> finalOutputShapelets = new ImportantShapelets().GetImportantShapelets(mergedShapelets, data, arr); //find important shapelets
-        saveShapeleteStats(finalOutputShapelets, data.get(1).numValues() - 1, datasetName,template);
+        saveShapeleteStats(finalOutputShapelets, data.get(1).numValues() - 1, datasetName,template,toEmail);
 
 
         long endTime = System.currentTimeMillis();
@@ -59,7 +59,7 @@ public class LearnShapelets {
         System.out.println("\nExecution time in milli seconds: " + totalTime);
     }
 
-    private static void saveShapeleteStats(ArrayList<Shapelet> shapelets, int noOfColumns, String datasetname,SimpMessagingTemplate template) throws IOException, ParserConfigurationException, SAXException {
+    private static void saveShapeleteStats(ArrayList<Shapelet> shapelets, int noOfColumns, String datasetname,SimpMessagingTemplate template,String toEmail) throws IOException, ParserConfigurationException, SAXException {
         int size = 0;
         int startPos = 0;
         int shapeletVal = 0;
@@ -117,7 +117,7 @@ public class LearnShapelets {
         System.out.println(finalJsonObject);
         datasetname = datasetname.replace(".csv", "");
         datasetname = datasetname.replace(".arff", "");
-        FileOperations.saveImportantShapelets(finalJsonObject, datasetname,template);
+        FileOperations.saveImportantShapelets(finalJsonObject, datasetname,template,toEmail);
 
     }
 }
