@@ -2,6 +2,7 @@ package tech.artisanhub.controller;
 
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +22,8 @@ public class DashBoardController {
     }
 
     @RequestMapping(value = "/redirect", method = RequestMethod.GET)
-    public String redirect() {
+    public String redirect(@RequestParam("dataset") String datasetname,ModelMap model) {
+        model.addAttribute("dataset", datasetname);
         return "redirect:graph_visualizer";
     }
 

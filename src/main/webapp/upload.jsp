@@ -25,7 +25,7 @@
                 stompClient.subscribe('/topic/greetings', function (greeting) {
                     console.log(JSON.parse(greeting.body).content);
                     $('#infoStartProcess').append("<p>"+JSON.parse(greeting.body).content+" successfully generated</p>");
-                    window.location.href = "/redirect";
+                    window.location.href = "/redirect?dataset="+JSON.parse(greeting.body).content;
                 });
             });
         });

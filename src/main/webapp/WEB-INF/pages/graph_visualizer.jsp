@@ -249,7 +249,7 @@
 <script type="text/javascript" src="../../resources/js/plugins/jquery/jquery-ui.min.js"></script>
 <script>
     $(document).ready(function () {
-        drawGraph('iris');
+        drawGraph("<%=request.getParameter("dataset")%>");
     });
 </script>
 <script type="text/javascript" src="../../resources/js/plugins/bootstrap/bootstrap.min.js"></script>
