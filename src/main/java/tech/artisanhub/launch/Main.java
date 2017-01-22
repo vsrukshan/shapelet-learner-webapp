@@ -7,10 +7,8 @@ import org.apache.catalina.core.StandardContext;
 import org.apache.catalina.startup.Tomcat;
 import org.apache.catalina.webresources.DirResourceSet;
 import org.apache.catalina.webresources.StandardRoot;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
-@SpringBootApplication
 public class Main {
 
     public static void main(String[] args) throws Exception {
