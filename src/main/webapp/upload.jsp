@@ -12,7 +12,24 @@
     <title>Upload File Request Page</title>
     <script src="${pageContext.request.contextPath}/resources/js/plugins/jquery/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/plugins/jquery/jquery.form.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/plugins/websockets/sockjs.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/plugins/websockets/stomp.min.js"></script>
+
     <script>
+
+        $(document).ready(function () {
+            var socket = new SockJS('/gs-guide-websocket');
+            stompClient = Stomp.over(socket);
+            stompClient.connect({}, function (frame) {
+                console.log('Connected: ' + frame);
+                stompClient.subscribe('/topic/greetings', function (greeting) {
+                    console.log(JSON.parse(greeting.body).content);
+                    $('#infoStartProcess').append("<p>"+JSON.parse(greeting.body).content+" successfully generated</p>");
+                    window.location.href = "/redirect";
+                });
+            });
+        });
+
         function uploadJqueryForm() {
             $(document).on("ajaxStart.firstCall", function () {
                 $('#loading').show();
@@ -38,13 +55,27 @@
                     format: 'json'
                 },
                 error: function () {
-                    $('#info').html('<p>An error has occurred</p>');
+                    $('#infoShowFiles').html('<p>An error has occurred</p>');
                 },
                 dataType: 'json',
                 success: function (data) {
                     var jsonPretty = JSON.stringify(data, null, 4);
                     console.log(jsonPretty);
-                    document.getElementById("info").innerHTML = jsonPretty;
+                    document.getElementById("infoShowFiles").innerHTML = jsonPretty;
+                },
+                type: 'GET'
+            });
+        }
+
+        function startProcess(datasetName) {
+            $.ajax({
+                url: '/learner/start',
+                data: "dataset=" + datasetName,
+                error: function () {
+                    $('#infoStartProcess').html('<p>An error has occurred</p>');
+                },
+                success: function (data) {
+                    console.log(data);
                 },
                 type: 'GET'
             });
@@ -54,6 +85,15 @@
             $('#loading').hide();
         });
 
+        $(document).ready(function () {
+            $('#loading').hide();
+            $.getJSON("/datasets", function (json) {
+                $('#myselect').empty();
+                $.each(json.Files, function (i, obj) {
+                    $('#myselect').append($('<option>').text(obj.File_Name).attr('value', obj.val));
+                });
+            });
+        });
 
     </script>
 </head>
@@ -68,8 +108,17 @@
 <div id="loading">
     <p><img src="${pageContext.request.contextPath}/resources/img/jquery/loading-overlay.gif"/></p>
 </div>
+
 <h2>Following datasets are already in the server</h2>
-<button value="ShowFiles" onclick="showFilesOnServer()">ShowFiles</button>
-<div id="info"></div>
+<button value="ShowFiles" onclick="showFilesOnServer()">Show Files On Server</button>
+<div id="infoShowFiles"></div>
+
+<h2>Select the relevant dataset and press start. Page will be automatically redirected to the graph</h2>
+<div>
+    <select id="myselect" name="myselect"></select>
+    <button value="Submit" onclick="startProcess(document.getElementById('myselect').value)">Start processing</button>
+</div>
+<div id="infoStartProcess"></div>
+
 </body>
 </html>

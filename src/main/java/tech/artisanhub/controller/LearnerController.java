@@ -27,7 +27,9 @@ public class LearnerController {
 
 
     @RequestMapping(value = "/start", method = RequestMethod.GET)
-    public String startProcess(@RequestParam("dataset") String name, ModelMap model) {
+    public
+    @ResponseBody
+    String startProcess(@RequestParam("dataset") String name) {
 
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
         ctx.register(AppConfig.class);
@@ -39,13 +41,11 @@ public class LearnerController {
             System.out.println(name + "Leaning has been interrupted");
             //Send an email
         }
-
-
-        model.addAttribute("test", name);
-        return "googleChartsVisualizer";
+        return "Started processing "+name;
 
 
     }
+
     @RequestMapping(value = "/results", method = RequestMethod.GET)
     public
     @ResponseBody
