@@ -9,7 +9,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-    <title>Upload File Request Page</title>
+    <title>Demo Page</title>
     <script src="${pageContext.request.contextPath}/resources/js/plugins/jquery/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/plugins/jquery/jquery.form.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/plugins/websockets/sockjs.min.js"></script>
@@ -24,11 +24,29 @@
                 console.log('Connected: ' + frame);
                 stompClient.subscribe('/topic/greetings', function (greeting) {
                     console.log(JSON.parse(greeting.body).content);
-                    $('#infoStartProcess').append("<p>"+JSON.parse(greeting.body).content+" successfully generated</p>");
-                    window.location.href = "/redirect?dataset="+JSON.parse(greeting.body).content;
+                    $('#startProcessResult').append("<p>"+JSON.parse(greeting.body).content+" successfully generated</p>");
+                    $('#startProcessResult').show();
                 });
             });
         });
+
+        function generateQuery(datasetName) {
+            $(document).off(".firstCall");
+            $.ajax({
+                url: '/learner/queries',
+                data: "dataset=" + datasetName,
+                error: function () {
+                    $('#generatedQueryResult').html('<p>An error has occurred</p>');
+                },
+                dataType: 'json',
+                success: function (data) {
+                    var jsonPretty = JSON.stringify(data, null, 4);
+                    console.log(jsonPretty);
+                    document.getElementById("generatedQueryResult").innerHTML = jsonPretty;
+                },
+                type: 'GET'
+            });
+        }
 
         function uploadJqueryForm() {
             $(document).on("ajaxStart.firstCall", function () {
@@ -76,7 +94,7 @@
                 },
                 success: function (data) {
                     console.log(data);
-                    $('#infoStartProcess').html('<p>'+data+'</p>');
+                    $('#infoStartProcess').html('<p>'+data+'. Please wait, this might take some time to finish.</p>');
                 },
                 dataType: "text",
                 type: 'GET'
@@ -85,6 +103,7 @@
 
         $(document).ready(function () {
             $('#loading').hide();
+            $('#startProcessResult').hide();
         });
 
         $(document).ready(function () {
@@ -96,6 +115,10 @@
                 });
             });
         });
+
+        function showGraph(datasetName) {
+            window.location.href = "/redirect?dataset="+datasetName;
+        }
 
     </script>
 </head>
@@ -115,13 +138,18 @@
 <button value="ShowFiles" onclick="showFilesOnServer()">Show Files On Server</button>
 <div id="infoShowFiles"></div>
 
-<h2>Select the relevant dataset and press start. Page will be automatically redirected to the graph</h2>
+<h2>Select the relevant dataset and press start.</h2>
 <div>
     <select id="myselect" name="myselect"></select>
-    <input id="email" type="text" name="email">
+    <input id="email" type="text" name="email" placeholder="Email address">
     <button value="Submit" onclick="startProcess(document.getElementById('myselect').value,document.getElementById('email').value)">Start processing</button>
 </div>
 <div id="infoStartProcess"></div>
+<div id="startProcessResult">
+    <button value="Submit" onclick="showGraph(document.getElementById('myselect').value.replace('.arff','').replace('.csv',''))">Show generated graphs</button>
+    <button value="Submit" onclick="generateQuery(document.getElementById('myselect').value.replace('.arff','').replace('.csv',''))">Generate Queries</button>
+</div>
+<div id="generatedQueryResult"></div>
 
 </body>
 </html>

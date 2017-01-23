@@ -2,19 +2,16 @@ package tech.artisanhub.controller;
 
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.xml.sax.SAXException;
 import tech.artisanhub.aSyncTaskManager.AppConfig;
 import tech.artisanhub.aSyncTaskManager.AsyncTask;
 import tech.artisanhub.fileHandler.FileOperations;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import tech.artisanhub.fileHandler.GenerateRespond;
 import tech.artisanhub.sender.EmailSender;
+import tech.artisanhub.shapeletTrainer.QueryGenerator;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
@@ -67,6 +64,24 @@ public class LearnerController {
         } catch (SAXException e) {
             return "Error while reading from the properties.xml file";
         }
-
     }
+
+    @RequestMapping(value = "/queries", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    String getQueries(@RequestParam("dataset") String datasetName) {
+        try {
+            return QueryGenerator.generateQuery(FileOperations.getGeneratedResults(datasetName),datasetName).toJSONString();
+        } catch (IOException e) {
+            return "Error while reading the file";
+        } catch (ParseException e) {
+            return "Error file parsing the json string";
+        } catch (ParserConfigurationException e) {
+            return "Error while reading from the properties.xml file";
+        } catch (SAXException e) {
+            return "Error while reading from the properties.xml file";
+        }
+    }
+
+
 }
