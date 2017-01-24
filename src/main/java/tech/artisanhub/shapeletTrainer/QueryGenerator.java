@@ -78,7 +78,6 @@ public class QueryGenerator {
                         tempUp = upperBound.get(j);
                     } catch (IndexOutOfBoundsException e) {
                         upperBound.add(j, Double.MIN_VALUE);
-                    } finally {
                         tempUp = upperBound.get(j);
                     }
 
@@ -86,7 +85,6 @@ public class QueryGenerator {
                         tempLow = lowerBound.get(j);
                     } catch (IndexOutOfBoundsException e) {
                         lowerBound.add(j, Double.MAX_VALUE);
-                    } finally {
                         tempLow = lowerBound.get(j);
                     }
                     currTemp = new Double(currStringVal);
@@ -104,7 +102,7 @@ public class QueryGenerator {
             int i = 0;
             startPos++;
             while (i < lowerBound.size()) {
-                query += " (COLUMN" + (startPos + i) + ".Value<" + upperBound.get(i) + " AND COLUMN" + (startPos + i) + ".Value>" + lowerBound.get(i) + ") ";
+                query += " (COLUMN" + (startPos + i) + ".Value<=" + upperBound.get(i) + " AND COLUMN" + (startPos + i) + ".Value>=" + lowerBound.get(i) + ") ";
                 i++;
                 if (i < lowerBound.size()) {
                     query += "AND";
