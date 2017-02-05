@@ -24,7 +24,7 @@
                 console.log('Connected: ' + frame);
                 stompClient.subscribe('/topic/greetings', function (greeting) {
                     console.log(JSON.parse(greeting.body).content);
-                    $('#startProcessResult').append("<p>"+JSON.parse(greeting.body).content+" successfully generated</p>");
+                    $('#startProcessResult').append("<p>" + JSON.parse(greeting.body).content + " successfully generated</p>");
                     $('#startProcessResult').show();
                 });
             });
@@ -85,16 +85,16 @@
             });
         }
 
-        function startProcess(datasetName,email) {
+        function startProcess(datasetName, email) {
             $.ajax({
                 url: '/learner/start',
-                data: "dataset=" + datasetName+"&email="+email,
+                data: "dataset=" + datasetName + "&email=" + email,
                 error: function () {
                     $('#infoStartProcess').html('<p>An error has occurred</p>');
                 },
                 success: function (data) {
                     console.log(data);
-                    $('#infoStartProcess').html('<p>'+data+'. Please wait, this might take some time to finish.</p>');
+                    $('#infoStartProcess').html('<p>' + data + '. Please wait, this might take some time to finish.</p>');
                 },
                 dataType: "text",
                 type: 'GET'
@@ -117,7 +117,7 @@
         });
 
         function showGraph(datasetName) {
-            window.location.href = "/redirect?dataset="+datasetName;
+            window.location.href = "/redirect?dataset=" + datasetName;
         }
 
     </script>
@@ -142,12 +142,21 @@
 <div>
     <select id="myselect" name="myselect"></select>
     <input id="email" type="text" name="email" placeholder="Email address">
-    <button value="Submit" onclick="startProcess(document.getElementById('myselect').value,document.getElementById('email').value)">Start processing</button>
+    <button value="Submit"
+            onclick="startProcess(document.getElementById('myselect').value,document.getElementById('email').value)">
+        Start processing
+    </button>
 </div>
 <div id="infoStartProcess"></div>
 <div id="startProcessResult">
-    <button value="Submit" onclick="showGraph(document.getElementById('myselect').value.replace('.arff','').replace('.csv',''))">Show generated graphs</button>
-    <button value="Submit" onclick="generateQuery(document.getElementById('myselect').value.replace('.arff','').replace('.csv',''))">Generate Queries</button>
+    <button value="Submit"
+            onclick="showGraph(document.getElementById('myselect').value.replace('.arff','').replace('.csv',''))">Show
+        generated graphs
+    </button>
+    <button value="Submit"
+            onclick="generateQuery(document.getElementById('myselect').value.replace('.arff','').replace('.csv',''))">
+        Generate Queries
+    </button>
 </div>
 <div id="generatedQueryResult"></div>
 

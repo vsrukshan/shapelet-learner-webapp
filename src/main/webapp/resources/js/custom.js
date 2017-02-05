@@ -57,3 +57,23 @@ function startLearner(text) {
         }
     });
 }
+
+function startProcess(datasetName, email) {
+    $.ajax({
+        url: '/learner/start',
+        data: "dataset=" + datasetName + "&email=" + email,
+        error: function () {
+            $('#infoStartProcess').html('<p>An error has occurred</p>');
+        },
+        success: function (data) {
+            console.log(data);
+            $('#infoStartProcess').html('<p>' + data + '. Please wait, this might take some time to finish.</p>');
+        },
+        dataType: "text",
+        type: 'GET'
+    });
+}
+
+function showGraph(datasetName) {
+    window.location.href = "/redirect?dataset=" + datasetName;
+}

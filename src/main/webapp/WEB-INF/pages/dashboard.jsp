@@ -77,8 +77,8 @@
             <!-- END SIGN OUT -->
             <!-- MESSAGES -->
             <li class="xn-icon-button pull-right">
-                <a href="#"><span class="fa fa-comments"></span></a>
-                <div class="informer informer-danger">4</div>
+                <a><span class="fa fa-comments" onclick="showGraph(document.getElementById('myselect').value.replace('.arff','').replace('.csv',''))"></span></a>
+                <div id="notificatio" class="informer informer-info">0</div>
                 <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
                     <div class="panel-heading">
                         <h3 class="panel-title"><span class="fa fa-comments"></span> Messages</h3>
@@ -121,60 +121,6 @@
             </li>
             <!-- END MESSAGES -->
             <!-- TASKS -->
-            <li class="xn-icon-button pull-right">
-                <a href="#"><span class="fa fa-tasks"></span></a>
-                <div class="informer informer-warning">3</div>
-                <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><span class="fa fa-tasks"></span> Tasks</h3>
-                        <div class="pull-right">
-                            <span class="label label-warning">3 active</span>
-                        </div>
-                    </div>
-                    <div class="panel-body list-group scroll" style="height: 200px;">
-                        <a class="list-group-item" href="#">
-                            <strong>Phasellus augue arcu, elementum</strong>
-                            <div class="progress progress-small progress-striped active">
-                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="50"
-                                     aria-valuemin="0" aria-valuemax="100" style="width: 50%;">50%
-                                </div>
-                            </div>
-                            <small class="text-muted">John Doe, 25 Sep 2014 / 50%</small>
-                        </a>
-                        <a class="list-group-item" href="#">
-                            <strong>Aenean ac cursus</strong>
-                            <div class="progress progress-small progress-striped active">
-                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80"
-                                     aria-valuemin="0" aria-valuemax="100" style="width: 80%;">80%
-                                </div>
-                            </div>
-                            <small class="text-muted">Dmitry Ivaniuk, 24 Sep 2014 / 80%</small>
-                        </a>
-                        <a class="list-group-item" href="#">
-                            <strong>Lorem ipsum dolor</strong>
-                            <div class="progress progress-small progress-striped active">
-                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="95"
-                                     aria-valuemin="0" aria-valuemax="100" style="width: 95%;">95%
-                                </div>
-                            </div>
-                            <small class="text-muted">John Doe, 23 Sep 2014 / 95%</small>
-                        </a>
-                        <a class="list-group-item" href="#">
-                            <strong>Cras suscipit ac quam at tincidunt.</strong>
-                            <div class="progress progress-small">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                                     aria-valuemax="100" style="width: 100%;">100%
-                                </div>
-                            </div>
-                            <small class="text-muted">John Doe, 21 Sep 2014 /</small>
-                            <small class="text-success"> Done</small>
-                        </a>
-                    </div>
-                    <div class="panel-footer text-center">
-                        <a>Show all tasks</a>
-                    </div>
-                </div>
-            </li>
             <!-- END TASKS -->
         </ul>
         <!-- END X-NAVIGATION VERTICAL -->
@@ -315,21 +261,28 @@
                             <h3>Select Previous Uploaded Files</h3>
 
                         </div>
+                        <%--<div>--%>
+                        <%--<select onchange="selectDatabase()" id="myselect" name="myselect"></select>--%>
+                        <%--</div>--%>
                         <div>
-                            <select onchange="selectDatabase()" id="myselect" name="myselect"></select>
-                        </div>
-
-                        <div class="js-upload-finished">
-                            <h3></h3>
-
-                        </div>
-                        <div>
-                          <form method="GET" action="/redirect">
-                            <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submited"> Proceed
-
+                            <select id="myselect" name="myselect"></select>
+                            <input id="email" type="text" name="email" placeholder="Email address">
+                            <button value="Submit"
+                                    onclick="startProcess(document.getElementById('myselect').value,document.getElementById('email').value)">
+                                Start processing
                             </button>
-                            </form>
                         </div>
+                        <div id="infoStartProcess"></div>
+                        <div id="startProcessResult">
+                            <button value="Submit"
+                                    onclick="showGraph(document.getElementById('myselect').value.replace('.arff','').replace('.csv',''))">
+                                Show
+                                generated graphs
+                            </button>
+                            <button value="Submit"
+                                    onclick="generateQuery(document.getElementById('myselect').value.replace('.arff','').replace('.csv',''))">
+                                Generate Queries
+                            </button>
                         <div class="row">
                             <canvas id="canvas"></canvas>
                         </div>
@@ -406,18 +359,49 @@
 <script src="../../resources/js/plugins/jquery/jquery.min.js"></script>
 <script src="../../resources/js/plugins/jquery/jquery.form.js"></script>
 <script src="../../resources/js/custom.js"></script>
+<script src="../../resources/js/plugins/websockets/sockjs.min.js"></script>
+<script src="../../resources/js/plugins/websockets/stomp.min.js"></script>
 
 <script>
     $(document).ready(function () {
         $('#loading').hide();
+        $('#startProcessResult').hide();
         $.getJSON("/datasets", function (json) {
             $('#myselect').empty();
             $.each(json.Files, function (i, obj) {
                 $('#myselect').append($('<option>').text(obj.File_Name).attr('value', obj.val));
             });
         });
+
+        var socket = new SockJS('/gs-guide-websocket');
+        stompClient = Stomp.over(socket);
+        stompClient.connect({}, function (frame) {
+            console.log('Connected: ' + frame);
+            stompClient.subscribe('/topic/greetings', function (greeting) {
+                console.log(JSON.parse(greeting.body).content);
+                var notify = document.getElementById("notificatio");
+                notify.innerHTML = "1";
+                notify.className = "informer informer-danger";
+                var snd = new Audio("../../resources/audio/success.wav");
+                snd.play();
+
+                var passerName = "/sendMail?email=" +document.getElementById('email').value ;
+                $.ajax({
+                    type: 'POST',
+                    url: passerName,
+                    success: function (data) {
+                        var jsonPretty = JSON.stringify(data, null, 4);
+                        console.log(jsonPretty);
+                    }
+                });
+
+                $('#startProcessResult').append("<p>" + JSON.parse(greeting.body).content + " successfully generated</p>");
+                $('#startProcessResult').show();
+            });
+        });
     });
 </script>
+
 <!-- END TEMPLATE -->
 <!-- END SCRIPTS -->
 </body>
