@@ -7,6 +7,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.xml.sax.SAXException;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import tech.artisanhub.sender.EmailSender;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
@@ -26,6 +27,9 @@ public class FileOperations {
         for (File f : files) {
             jsonObject = new JSONObject();
 
+            if (f.getName().contains("generatedShapelets")){
+                continue;
+            }
             jsonObject.put("Last_Modified",convertTime(f.lastModified()));
             jsonObject.put("File_Name",f.getName());
             jsonArray.add(jsonObject);
@@ -42,7 +46,7 @@ public class FileOperations {
         return format.format(date);
     }
 
-    public static boolean saveImportantShapelets(JSONObject finalJsonObject, String datasetName,SimpMessagingTemplate template) throws ParserConfigurationException, SAXException, IOException {
+    public static boolean saveImportantShapelets(JSONObject finalJsonObject, String datasetName,SimpMessagingTemplate template,String toEmail) throws ParserConfigurationException, SAXException, IOException {
         String rootPath = System.getProperty("catalina.home");
         BufferedWriter output = null;
 
@@ -57,7 +61,8 @@ public class FileOperations {
             output.write(finalJsonObject.toJSONString());
             output.close();
             System.out.println(datasetName + ".json successdully saved");
-            template.convertAndSend("/topic/greetings", new GenerateRespond(datasetName+".json"));
+            template.convertAndSend("/topic/greetings", new GenerateRespond(datasetName));
+            EmailSender.sendEmail(toEmail,"Processing completed","Find the generated content from : http://localhost:8334/graph_visualizer?dataset="+datasetName);
             return true;
         } catch (IOException e) {
             return false;

@@ -6,7 +6,7 @@ import tech.artisanhub.shapeletTrainer.LearnShapelets;
 
 public class AsyncTask {
     @Async
-    public void doAsyncTask(String datasetName, SimpMessagingTemplate template) throws Exception {
-        LearnShapelets.learnShapelets(datasetName, template);
+    public void doAsyncTask(String datasetName, SimpMessagingTemplate template, String toEmail) throws Exception {
+        LearnShapelets.learnShapelets(datasetName, template,toEmail);
     }
 }
