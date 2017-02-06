@@ -8,6 +8,7 @@
     font-size: 14px;
     padding-top: 140px;
 }
+
 .upload-drop-zone {
     height: 200px;
     border-width: 2px;
@@ -22,34 +23,71 @@
     line-height: 200px;
     text-align: center
 }
+
 .upload-drop-zone.drop {
     color: #222;
     border-color: #222;
 }
-.myButton {
-    -moz-box-shadow: 0px 10px 14px -7px #20a176;
-    -webkit-box-shadow: 0px 10px 14px -7px #20a176;
-    box-shadow: 0px 10px 14px -7px #20a176;
-    background-color:#36ad83;
-    -moz-border-radius:8px;
-    -webkit-border-radius:8px;
-    border-radius:8px;
-    display:inline-block;
-    cursor:pointer;
-    color:#ffffff;
-    font-family:Arial;
-    font-size:20px;
-    font-weight:bold;
-    padding:13px 32px;
-    text-decoration:none;
-    text-shadow:0px 1px 0px #ffffff;
-}
-.myButton:hover {
-    background-color:#20b36c;
-}
-.myButton:active {
-    position:relative;
-    top:1px;
+
+/*button style*/
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
+a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #000;
+}
+
+.myButton {
+    -moz-box-shadow: 0px 10px 14px -7px #20a176;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Open Sans, Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    padding: .8em 1.5em;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #ffffff;
+    white-space: nowrap;
+    line-height: 18px;
+    zoom: 1;
+    text-align: center;
+    position: relative;
+    -webkit-transition: border .25s linear, color .25s linear, background-color .25s linear;
+    transition: border .25s linear, color .25s linear, background-color .25s linear;
+    background-color: #1caf9a;
+    border-color: #08bc9a;
+    -webkit-box-shadow: 0 3px 0 #088d74;
+    box-shadow: 0 3px 0 #088d74;
+}
+
+.myButton:hover {
+    background-color: #01a183;
+    color: #ffffff;
+    text-shadow: 0px 1px 0px #ffffff;
+    text-decoration: none;
+}
+
+.myButton:active {
+    position: relative;
+    top: 1px;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    background-color: #1caf9a !important;
+    border: medium none;
+    border-radius: 0;
+    color: #fff;
+    font-size: 14px;
+}
 

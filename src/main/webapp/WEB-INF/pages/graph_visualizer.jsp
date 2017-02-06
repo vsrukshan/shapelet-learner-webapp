@@ -17,9 +17,35 @@
     <%--ChartJs INCLUDE--%>
     <link href="../../resources/css/custom.css" rel="stylesheet">
     <script src="../../resources/js/Chart.min.js"></script>
-    <%--EOF ChartJs INCLUDE--%>
+
+    <link href="../../resources/css/fonts/googleFonts.css" rel="stylesheet">
+    <link href="../../resources/css/fontawesome/font-awesome.min.css" rel="stylesheet">
+<%--EOF ChartJs INCLUDE--%>
 </head>
 <body>
+<!-- START POP-UP MESSAGE -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Please Select a Dataset</h4>
+            </div>
+            <div class="modal-body">
+                <select id="myselect" name="myselect"></select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"
+                        onclick="showGraph(document.getElementById('myselect').value.replace('.arff','').replace('.csv',''))">
+                    Proceed
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END POP-UP MESSAGE -->
+
 <!-- START PAGE CONTAINER -->
 <div class="page-container">
 
@@ -78,104 +104,11 @@
             </li>
             <!-- END SIGN OUT -->
             <!-- MESSAGES -->
-            <li class="xn-icon-button pull-right">
-                <a href="#"><span class="fa fa-comments"></span></a>
-                <div class="informer informer-danger">4</div>
-                <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><span class="fa fa-comments"></span> Messages</h3>
-                        <div class="pull-right">
-                            <span class="label label-danger">4 new</span>
-                        </div>
-                    </div>
-                    <div class="panel-body list-group list-group-contacts scroll" style="height: 200px;">
-                        <a href="#" class="list-group-item">
-                            <div class="list-group-status status-online"></div>
-                            <img src="../../resources/assets/images/users/user2.jpg" class="pull-left" alt="John Doe"/>
-                            <span class="contacts-title">John Doe</span>
-                            <p>Praesent placerat tellus id augue condimentum</p>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <div class="list-group-status status-away"></div>
-                            <img src="../../resources/assets/images/users/user.jpg" class="pull-left"
-                                 alt="Dmitry Ivaniuk"/>
-                            <span class="contacts-title">Dmitry Ivaniuk</span>
-                            <p>Donec risus sapien, sagittis et magna quis</p>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <div class="list-group-status status-away"></div>
-                            <img src="../../resources/assets/images/users/user3.jpg" class="pull-left" alt="Nadia Ali"/>
-                            <span class="contacts-title">Nadia Ali</span>
-                            <p>Mauris vel eros ut nunc rhoncus cursus sed</p>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <div class="list-group-status status-offline"></div>
-                            <img src="../../resources/assets/images/users/user6.jpg" class="pull-left"
-                                 alt="Darth Vader"/>
-                            <span class="contacts-title">Darth Vader</span>
-                            <p>I want my money back!</p>
-                        </a>
-                    </div>
-                    <div class="panel-footer text-center">
-                        <a>Show all messages</a>
-                    </div>
-                </div>
-            </li>
             <!-- END MESSAGES -->
             <!-- TASKS -->
             <li class="xn-icon-button pull-right">
-                <a href="#"><span class="fa fa-tasks"></span></a>
-                <div class="informer informer-warning">3</div>
-                <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><span class="fa fa-tasks"></span> Tasks</h3>
-                        <div class="pull-right">
-                            <span class="label label-warning">3 active</span>
-                        </div>
-                    </div>
-                    <div class="panel-body list-group scroll" style="height: 200px;">
-                        <a class="list-group-item" href="#">
-                            <strong>Phasellus augue arcu, elementum</strong>
-                            <div class="progress progress-small progress-striped active">
-                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="50"
-                                     aria-valuemin="0" aria-valuemax="100" style="width: 50%;">50%
-                                </div>
-                            </div>
-                            <small class="text-muted">John Doe, 25 Sep 2014 / 50%</small>
-                        </a>
-                        <a class="list-group-item" href="#">
-                            <strong>Aenean ac cursus</strong>
-                            <div class="progress progress-small progress-striped active">
-                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80"
-                                     aria-valuemin="0" aria-valuemax="100" style="width: 80%;">80%
-                                </div>
-                            </div>
-                            <small class="text-muted">Dmitry Ivaniuk, 24 Sep 2014 / 80%</small>
-                        </a>
-                        <a class="list-group-item" href="#">
-                            <strong>Lorem ipsum dolor</strong>
-                            <div class="progress progress-small progress-striped active">
-                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="95"
-                                     aria-valuemin="0" aria-valuemax="100" style="width: 95%;">95%
-                                </div>
-                            </div>
-                            <small class="text-muted">John Doe, 23 Sep 2014 / 95%</small>
-                        </a>
-                        <a class="list-group-item" href="#">
-                            <strong>Cras suscipit ac quam at tincidunt.</strong>
-                            <div class="progress progress-small">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                                     aria-valuemax="100" style="width: 100%;">100%
-                                </div>
-                            </div>
-                            <small class="text-muted">John Doe, 21 Sep 2014 /</small>
-                            <small class="text-success"> Done</small>
-                        </a>
-                    </div>
-                    <div class="panel-footer text-center">
-                        <a>Show all tasks</a>
-                    </div>
-                </div>
+                <a><span class="fa fa-comments"></span></a>
+                <div id="notificatio" class="informer informer-info">0</div>
             </li>
             <!-- END TASKS -->
         </ul>
@@ -190,52 +123,70 @@
 
         <!-- PAGE CONTENT WRAPPER -->
         <div class="page-content-wrap">
-            <ul class="nav nav-pills">
-                <li id="tab0" style="visibility: hidden" class="active"><a data-toggle="pill" href="#event0">Event 0</a></li>
-                <li id="tab1" style="visibility: hidden"><a data-toggle="pill" href="#event1">Event 1</a></li>
-                <li id="tab2" style="visibility: hidden"><a data-toggle="pill" href="#event2">Event 2</a></li>
-                <li id="tab3" style="visibility: hidden"><a data-toggle="pill" href="#event3">Event 3</a></li>
-            </ul>
+            <div>
+                <ul class="nav nav-pills">
+                    <li id="tab0" style="visibility: hidden" class="active"><a data-toggle="pill" href="#event0">Event
+                        0</a>
+                    </li>
+                    <li id="tab1" style="visibility: hidden"><a data-toggle="pill" href="#event1">Event 1</a></li>
+                    <li id="tab2" style="visibility: hidden"><a data-toggle="pill" href="#event2">Event 2</a></li>
+                    <li id="tab3" style="visibility: hidden"><a data-toggle="pill" href="#event3">Event 3</a></li>
+                </ul>
+            </div>
             <div class="tab-content">
                 <div id="event0" class="tab-pane fade in active">
-                    <div class="row">
-                        <canvas id="canvas0"></canvas>
+                    <div>
+                        <canvas id="canvas0" height="140"></canvas>
                     </div>
                     <div style="text-align:center;">
-                        <a id="button0" onclick="getChart()" class="myButton" style="visibility: hidden">Generate Query</a>
+                        <a id="button0" onclick="getChart()" class="myButton" style="visibility: hidden">Generate
+                            Query</a>
                     </div>
                 </div>
                 <div id="event1" class="tab-pane fade">
                     <div class="row">
-                        <canvas id="canvas1"></canvas>
+                        <canvas id="canvas1" height="140"></canvas>
                     </div>
                     <div style="text-align:center;">
-                        <a id="button1" onclick="getChart()" class="myButton" style="visibility: hidden">Generate Query</a>
+                        <a id="button1" onclick="getChart()" class="myButton" style="visibility: hidden">Generate
+                            Query</a>
                     </div>
                 </div>
                 <div id="event2" class="tab-pane fade">
                     <div class="row">
-                        <canvas id="canvas2"></canvas>
+                        <canvas id="canvas2" height="140"></canvas>
                     </div>
                     <div style="text-align:center;">
-                        <a id="button2" onclick="getChart()" class="myButton" style="visibility: hidden">Generate Query</a>
+                        <a id="button2" onclick="getChart()" class="myButton" style="visibility: hidden">Generate
+                            Query</a>
                     </div>
                 </div>
                 <div id="event3" class="tab-pane fade">
                     <div class="row">
-                        <canvas id="canvas3"></canvas>
+                        <canvas id="canvas3" height="140"></canvas>
                     </div>
                     <div style="text-align:center;">
-                        <a id="button3" onclick="getChart()" class="myButton" style="visibility: hidden">Generate Query</a>
+                        <a id="button3" onclick="getChart()" class="myButton" style="visibility: hidden">Generate
+                            Query</a>
+                    </div>
+                </div>
+                <div id="event4" class="tab-pane fade">
+                    <div class="row">
+                        <canvas id="canvas4" height="140"></canvas>
+                    </div>
+                    <div style="text-align:center;">
+                        <a id="button4" onclick="getChart()" class="myButton" style="visibility: hidden">Generate
+                            Query</a>
                     </div>
                 </div>
             </div>
         </div>
-
         <!-- END PAGE CONTENT WRAPPER -->
+
     </div>
     <!-- END PAGE CONTENT -->
 </div>
+
 <!-- END PAGE CONTAINER -->
 
 <!-- START PRELOADS -->
@@ -249,39 +200,36 @@
 <script type="text/javascript" src="../../resources/js/plugins/jquery/jquery-ui.min.js"></script>
 <script>
     $(document).ready(function () {
-        drawGraph("<%=request.getParameter("dataset")%>");
+        var datasetName = "<%=request.getParameter("dataset")%>";
+        if (datasetName === "null") {
+            $.getJSON("/datasets", function (json) {
+                $('#myselect').empty();
+                $.each(json.Files, function (i, obj) {
+                    $('#myselect').append($('<option>').text(obj.File_Name).attr('value', obj.val));
+                });
+            });
+            $('#myModal').modal({backdrop: 'static', keyboard: false})
+            $('#myModal').modal('show');
+        } else {
+            $('#myModal').modal('hide');
+            drawGraph("<%=request.getParameter("dataset")%>");
+        }
     });
 </script>
 <script type="text/javascript" src="../../resources/js/plugins/bootstrap/bootstrap.min.js"></script>
 <!-- END PLUGINS -->
 
 <!-- START THIS PAGE PLUGINS-->
-<script type='text/javascript' src='../../resources/js/plugins/icheck/icheck.min.js'></script>
-<script type="text/javascript"
-        src="../../resources/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
-<script type="text/javascript" src="../../resources/js/plugins/scrolltotop/scrolltopcontrol.js"></script>
 
-<script type="text/javascript" src="../../resources/js/plugins/morris/raphael-min.js"></script>
-<script type="text/javascript" src="../../resources/js/plugins/morris/morris.min.js"></script>
-<script type="text/javascript" src="../../resources/js/plugins/rickshaw/d3.v3.js"></script>
-<script type="text/javascript" src="../../resources/js/plugins/rickshaw/rickshaw.min.js"></script>
 <script type='text/javascript' src='../../resources/js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js'></script>
 <script type='text/javascript' src='../../resources/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js'></script>
 <script type='text/javascript' src='../../resources/js/plugins/bootstrap/bootstrap-datepicker.js'></script>
-<script type="text/javascript" src="../../resources/js/plugins/owl/owl.carousel.min.js"></script>
 
-<script type="text/javascript" src="../../resources/js/plugins/moment.min.js"></script>
-<script type="text/javascript" src="../../resources/js/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- END THIS PAGE PLUGINS-->
 
 <!-- START TEMPLATE -->
-<script type="text/javascript" src="../../resources/js/settings.js"></script>
-
-<script type="text/javascript" src="../../resources/js/plugins.js"></script>
-<script type="text/javascript" src="../../resources/js/actions.js"></script>
-
-<script type="text/javascript" src="../../resources/js/demo_dashboard.js"></script>
 <script src="../../resources/js/lineChart.js"></script>
+<script src="../../resources/js/custom.js"></script>
 <script type="text/javascript">
     function getChart() {
         var button = document.getElementById("button");
