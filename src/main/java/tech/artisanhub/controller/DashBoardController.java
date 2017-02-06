@@ -7,10 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import tech.artisanhub.emails.EmailManager;
 import tech.artisanhub.fileHandler.FileOperations;
-import tech.artisanhub.fileHandler.UploadFile;
 
 import java.io.File;
 
@@ -23,7 +20,7 @@ public class DashBoardController {
     }
 
     @RequestMapping(value = "/redirect", method = RequestMethod.GET)
-    public String redirect(@RequestParam("dataset") String datasetname,ModelMap model) {
+    public String redirect(@RequestParam("dataset") String datasetname, ModelMap model) {
         model.addAttribute("dataset", datasetname);
         return "redirect:graph_visualizer";
     }
@@ -40,17 +37,4 @@ public class DashBoardController {
         String rootPath = System.getProperty("catalina.home");
         return FileOperations.filesInDir(rootPath + File.separator + "uploads");
     }
-    /**
-     * Send email
-     */
-    @RequestMapping(value = "/sendMail", method = RequestMethod.POST)
-    public
-    @ResponseBody
-    void uploadFileHandler(@RequestParam("email") String receiptEmail) {
-        EmailManager.configureEmail(receiptEmail);
-    }
-
-
-
-
 }
