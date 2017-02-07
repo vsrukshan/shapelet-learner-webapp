@@ -20,11 +20,11 @@
 
     <link href="../../resources/css/fonts/googleFonts.css" rel="stylesheet">
     <link href="../../resources/css/fontawesome/font-awesome.min.css" rel="stylesheet">
-<%--EOF ChartJs INCLUDE--%>
+    <%--EOF ChartJs INCLUDE--%>
 </head>
 <body>
 <!-- START POP-UP MESSAGE -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -44,6 +44,21 @@
         </div>
     </div>
 </div>
+
+<!-- Modal 2 -->
+<div class="modal fade" id="queryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">x</span></button>
+                <h4 class="modal-title" id="myModalLabel">Generated Query</h4>
+            </div>
+            <div id="queryContent" class="modal-body">czcscs</div>
+        </div>
+    </div>
+</div>
+
 <!-- END POP-UP MESSAGE -->
 
 <!-- START PAGE CONTAINER -->
@@ -139,7 +154,8 @@
                         <canvas id="canvas0" height="140"></canvas>
                     </div>
                     <div style="text-align:center;">
-                        <a id="button0" onclick="getChart()" class="myButton" style="visibility: hidden">Generate
+                        <a id="button0" onclick="generateQuery('<%=request.getParameter("dataset")%>', 0)"
+                           class="myButton" style="visibility: hidden">Generate
                             Query</a>
                     </div>
                 </div>
@@ -148,7 +164,8 @@
                         <canvas id="canvas1" height="140"></canvas>
                     </div>
                     <div style="text-align:center;">
-                        <a id="button1" onclick="getChart()" class="myButton" style="visibility: hidden">Generate
+                        <a id="button1" onclick="generateQuery('<%=request.getParameter("dataset")%>',1)"
+                           class="myButton" style="visibility: hidden">Generate
                             Query</a>
                     </div>
                 </div>
@@ -157,7 +174,8 @@
                         <canvas id="canvas2" height="140"></canvas>
                     </div>
                     <div style="text-align:center;">
-                        <a id="button2" onclick="getChart()" class="myButton" style="visibility: hidden">Generate
+                        <a id="button2" onclick="generateQuery('<%=request.getParameter("dataset")%>',2)"
+                           class="myButton" style="visibility: hidden">Generate
                             Query</a>
                     </div>
                 </div>
@@ -166,7 +184,8 @@
                         <canvas id="canvas3" height="140"></canvas>
                     </div>
                     <div style="text-align:center;">
-                        <a id="button3" onclick="getChart()" class="myButton" style="visibility: hidden">Generate
+                        <a id="button3" onclick="generateQuery('<%=request.getParameter("dataset")%>',3)"
+                           class="myButton" style="visibility: hidden">Generate
                             Query</a>
                     </div>
                 </div>
@@ -175,7 +194,8 @@
                         <canvas id="canvas4" height="140"></canvas>
                     </div>
                     <div style="text-align:center;">
-                        <a id="button4" onclick="getChart()" class="myButton" style="visibility: hidden">Generate
+                        <a id="button4" onclick="generateQuery('<%=request.getParameter("dataset")%>',4)"
+                           class="myButton" style="visibility: hidden">Generate
                             Query</a>
                     </div>
                 </div>
@@ -200,6 +220,7 @@
 <script type="text/javascript" src="../../resources/js/plugins/jquery/jquery-ui.min.js"></script>
 <script>
     $(document).ready(function () {
+        $('#queryModal').modal('hide');
         var datasetName = "<%=request.getParameter("dataset")%>";
         if (datasetName === "null") {
             $.getJSON("/datasets", function (json) {
@@ -231,11 +252,28 @@
 <script src="../../resources/js/lineChart.js"></script>
 <script src="../../resources/js/custom.js"></script>
 <script type="text/javascript">
-    function getChart() {
-        var button = document.getElementById("button");
-        var canvas = document.getElementById("canvas");
+    function generateQuery(datasetName, queryId) {
+        $(document).off(".firstCall");
+        $.ajax({
+            url: '/learner/queries',
+            data: "dataset=" + datasetName,
+            error: function () {
+                $('#generatedQueryResult').html('<p>An error has occurred</p>');
+            },
+            dataType: 'json',
+            success: function (data) {
+                var queries = data.Queries;
+                var query = queries[queryId].Query;
+                var queryContent = document.getElementById("queryContent");
+                queryContent.innerHTML = query;
+                $('#queryModal').modal('show');
+            },
+            type: 'GET'
+        });
     }
+
 </script>
+
 <!-- END TEMPLATE -->
 <!-- END SCRIPTS -->
 </body>
