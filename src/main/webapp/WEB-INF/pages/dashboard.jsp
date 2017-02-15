@@ -162,12 +162,6 @@
                             </button>
                         </div>
                         <div id="infoStartProcess"></div>
-                        <div id="startProcessResult">
-                            <button value="Submit"
-                                    onclick="generateQuery(document.getElementById('myselect').value.replace('.arff','').replace('.csv',''))">
-                                Generate Queries
-                            </button>
-                        </div>
                         <div id="datasetName" style="display: none;"></div>
                     </div>
                 </div> <!-- /container -->
@@ -249,7 +243,6 @@
 
                     $('#results').append("<p><h4>" + JSON.parse(greeting.body).content + " dataset - Shapelets has been generated successfully</h4></p>");
                     $('#myModal').modal('show');
-                    $('#startProcessResult').show();
 
                     var datasetName = document.getElementById("datasetName");
                     datasetName.innerHTML = JSON.parse(greeting.body).content;
