@@ -52,7 +52,7 @@ public class FileUploadController {
             Instances data = ShapeletFilter.loadData(datasetPath);
             out += "Number of instances : " + data.numInstances();
             out += "  Number of attributes : " + data.numAttributes();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             out += "Error processing the dataset";
         }

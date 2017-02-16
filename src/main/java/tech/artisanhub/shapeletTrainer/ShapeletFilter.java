@@ -12,6 +12,7 @@ package tech.artisanhub.shapeletTrainer;
  */
 
 import weka.core.*;
+import weka.core.converters.ConverterUtils;
 
 import java.io.*;
 import java.util.*;
@@ -487,11 +488,12 @@ public class ShapeletFilter {
      * @param fileName
      * @return
      */
-    public static Instances loadData(String fileName) throws IOException {
+    public static Instances loadData(String fileName) throws Exception {
         Instances data = null;
         FileReader r;
         r = new FileReader(fileName);
-        data = new Instances(r);
+        ConverterUtils.DataSource source = new ConverterUtils.DataSource(fileName);
+        data = source.getDataSet();
         data.setClassIndex(data.numAttributes() - 1);
 
         return data;

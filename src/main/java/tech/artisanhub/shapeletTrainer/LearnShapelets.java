@@ -31,7 +31,6 @@ public class LearnShapelets {
             }
         }
 
-        System.out.print(data.size());
         int k = Integer.MAX_VALUE; // number of shapelets
         int minLength = 2;
         int maxLength = data.get(1).numValues() - 1;
