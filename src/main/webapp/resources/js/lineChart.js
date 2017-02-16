@@ -22,11 +22,11 @@ function drawGraph(datasetName) {
                     dataset[shapelet] = [];
                     var shapeletEvent = dataArray[shapelet].EventType;
                     var shapeletValues = dataArray[shapelet].Values;
-                    for (var count=0; count< shapeletValues.length; count++) {
+                    for (var count = 0; count < shapeletValues.length; count++) {
                         dataset[shapelet][count] = shapeletValues[count];
                     }
                 }
-                draw(dataset,key);
+                draw(dataset, key, datasetName);
             }
         },
         type: 'GET'
@@ -42,9 +42,13 @@ function getRandomColor() {
     return color;
 }
 
-function draw(dataset, graphNo) {
+function draw(dataset, graphNo, datasetName) {
     var datasetValue = [];
     var lableNames = [];
+    var irisLables = ["Sepal Length", "Sepal Width", "Petal Length", "Petal Width"];
+    var occupancyLables = ["Temperature", "Humidity", "Light", "CO2", "HumidityRatio"];
+    var primaDiabetes = ["Number of times pregnant", "Plasma glucose concentration", "Diastolic blood pressure",
+        "Triceps skin fold thickness", "2-Hour serum insulin","Body mass index", "Diabetes pedigree function", "Age (years)"];
     var data = dataset;
 
     for (var j = 0; j < dataset.length; j++) {
@@ -59,14 +63,22 @@ function draw(dataset, graphNo) {
         };
     }
     var len = dataset[0].length;
-    for (var j=0; j<len; j++){
-        lableNames[j] = "Col " + (j + 1);
+
+    if (datasetName === "iris.arff" || datasetName === "iris.csv"){
+        lableNames = irisLables;
+    } else if (datasetName === "occupancy.arff" || datasetName === "occupancy.csv"){
+        lableNames = occupancyLables;
+    } else if (datasetName === "pima-indians-diabetes.arff" || datasetName === "pima-indians-diabetes.arff"){
+        lableNames = primaDiabetes;
+    } else {
+        for (var j = 0; j < len; j++) {
+            lableNames[j] = "Col " + (j + 1);
+        }
     }
 
-
-    var ctx = document.getElementById("canvas"+ graphNo);
-    document.getElementById('button'+graphNo).style.visibility = 'visible';
-    document.getElementById('tab'+graphNo).style.visibility = 'visible';
+    var ctx = document.getElementById("canvas" + graphNo);
+    document.getElementById('button' + graphNo).style.visibility = 'visible';
+    document.getElementById('tab' + graphNo).style.visibility = 'visible';
     var lineChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -76,7 +88,7 @@ function draw(dataset, graphNo) {
         backgroundColor: 'transparent',
         borderColor: '#F78511',
         options: {
-            responsive : true,
+            responsive: true,
             scales: {
                 yAxes: [{
                     ticks: {
@@ -95,7 +107,7 @@ function draw(dataset, graphNo) {
         // var mouseX = eventPosition.x;
         // var mouseY = eventPosition.y;
         //
-         var activePoints = lineChart.getElementAtEvent(evt);
+        var activePoints = lineChart.getElementAtEvent(evt);
         console.log(activePoints);
         // console.log(activePoints);
         // // var dataset = lineChart.getDatasetAtEvent(e);

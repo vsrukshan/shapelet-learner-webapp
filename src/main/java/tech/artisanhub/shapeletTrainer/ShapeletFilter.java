@@ -204,7 +204,7 @@ public class ShapeletFilter {
         int numInstances = data.numInstances();
         for (int i = 0; i < numInstances; i++) {
 
-            if (i == 0 || i % (numInstances / 4) == 0) {
+            if (i == 0 || i % (numInstances / 50) == 0) {
                 System.out.println("Currently processing instance " + (i + 1) + " of " + numInstances);
             }
 

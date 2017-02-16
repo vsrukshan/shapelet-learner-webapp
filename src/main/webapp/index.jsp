@@ -117,7 +117,7 @@
             <%--STRAT FILE UPLOAD--%>
             <div class="container">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><strong>Upload Files</strong>
+                    <div class="panel-heading"><strong><h4>Upload Files</h4></strong>
                     </div>
                     <div class="panel-body">
 
@@ -133,6 +133,7 @@
                                         id="js-upload-submit">Upload file
                                 </button>
                             </div>
+                            <br><br>
                         </form>
                         <div id="result"></div>
                         <div id="loading">
@@ -142,9 +143,9 @@
                         <!-- Drop Zone -->
                         <h4>Or drag and drop files below</h4>
                         <div class="upload-drop-zone" id="drop-zone">
-                            Just drag and drop files here
+                           <h5> Just drag and drop files here</h5>
                         </div>
-
+                        <br>
                         <!-- Upload Finished -->
                         <div class="js-upload-finished">
                             <h3>Select Previous Uploaded Files</h3>
