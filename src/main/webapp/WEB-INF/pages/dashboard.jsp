@@ -79,7 +79,7 @@
         <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
             <!-- TOGGLE NAVIGATION -->
             <li class="xn-icon-button">
-                <a href="../download.do" class="x-navigation-minimize"><span class="fa fa-download"></span></a>
+                <a href="../download.log" class="x-navigation-minimize"><span class="fa fa-download"></span></a>
             </li>
             <!-- END TOGGLE NAVIGATION -->
             <!-- SEARCH -->

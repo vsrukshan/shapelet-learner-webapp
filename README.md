@@ -11,6 +11,8 @@ shapelet-learner-webapp
 * Start learning (GET) :- [http://localhost:8334/learner/start?dataset=iris.arff&email=artisan@gmail.com](http://localhost:8334/learner/start?dataset=iris.arff&email=artisan@gmail.com).
 * Get generated shapelets **json** file (GET) :- [http://localhost:8334/learner/results?dataset=iris](http://localhost:8334/learner/results?dataset=iris) returns a **json string**.
 * Generate queries for processed **json** files (GET) :- [http://localhost:8334/learner/queries?dataset=iris](http://localhost:8334/learner/queries?dataset=iris) returns a **json string** with all the queries for the selected dataset.
+* Get dataset details (GET) :- [http://localhost:8334/getDetails?dataset=iris.arff](http://localhost:8334/getDetails?dataset=iris.arff) returns a String.
+* Download the log file (GET) :- [http://localhost:8334/download.log](http://localhost:8334/download.log)
 
 ### Debugging
 1. Intellij Idea can be used to remote debug this.

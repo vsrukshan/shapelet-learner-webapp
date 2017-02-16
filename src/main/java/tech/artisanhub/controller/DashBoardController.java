@@ -48,7 +48,7 @@ public class DashBoardController {
         return FileOperations.filesInDir(rootPath + File.separator + "uploads");
     }
 
-    @RequestMapping(value = "/download.do" ,method = RequestMethod.GET)
+    @RequestMapping(value = "/download.log" ,method = RequestMethod.GET)
     public void doDownload(HttpServletRequest request,
                            HttpServletResponse response) throws IOException {
         int BUFFER_SIZE = 4096;
