@@ -201,13 +201,8 @@ public class ShapeletFilter {
         // gain
 
         // for all time series
-        System.out.println("Processing data: ");
         int numInstances = data.numInstances();
         for (int i = 0; i < numInstances; i++) {
-
-            if (i == 0 || i % (numInstances / 50) == 0) {
-                System.out.println("Currently processing instance " + (i + 1) + " of " + numInstances);
-            }
 
             double[] wholeCandidate = data.instance(i).toDoubleArray();
             seriesShapelets = new ArrayList<Shapelet>();

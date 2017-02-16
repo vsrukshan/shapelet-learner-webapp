@@ -38,7 +38,6 @@ public class LearnShapelets {
         String outPutFile = rootPath + File.separator + "uploads" + File.separator + "generatedShapelets.txt";
         ShapeletFilter sf = new ShapeletFilter(k, minLength, maxLength);
         sf.setLogOutputFile(outPutFile); // log file stores shapelet output
-        System.out.println("Started processing " + datasetName);
         ArrayList<Shapelet> generatedShapelets = sf.process(data);
 
 
@@ -101,6 +100,7 @@ public class LearnShapelets {
                     }
                     currRowObj.put("EventType", val.contentInMergedShapelets.get(i).get(contentSize - 1).intValue()); //add the correct val
                     currRowObj.put("Values", currRow);
+                    currRowObj.put("SeriesId",val.contentInMergedShapelets.get(i).get(contentSize - 3).intValue());
                     allRows.add(currRowObj);
 
                 }
@@ -114,7 +114,6 @@ public class LearnShapelets {
         finalJsonObject.put("Data", jsonArraytMainEvent);
         finalJsonObject.put("DatasetName", datasetname);
         finalJsonObject.put("EventCount", eventCount);
-        System.out.println(finalJsonObject);
         datasetname = datasetname.replace(".csv", "");
         datasetname = datasetname.replace(".arff", "");
         FileOperations.saveImportantShapelets(finalJsonObject, datasetname,template,toEmail);
