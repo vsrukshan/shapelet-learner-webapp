@@ -39,6 +39,7 @@ public class LearnShapelets {
         String outPutFile = rootPath + File.separator + "uploads" + File.separator + "generatedShapelets.txt";
         ShapeletFilter sf = new ShapeletFilter(k, minLength, maxLength);
         sf.setLogOutputFile(outPutFile); // log file stores shapelet output
+        System.out.println("Started processing " + datasetName);
         ArrayList<Shapelet> generatedShapelets = sf.process(data);
 
 
