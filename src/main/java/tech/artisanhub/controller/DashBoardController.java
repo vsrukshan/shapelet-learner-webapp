@@ -40,6 +40,11 @@ public class DashBoardController {
         return "graph_visualizer";
     }
 
+    @RequestMapping(value = "/parallel_coordinate", method = RequestMethod.GET)
+    public String d3() {
+        return "d3";
+    }
+
     @RequestMapping(value = "/datasets", method = RequestMethod.GET)
     public
     @ResponseBody
