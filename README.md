@@ -2,7 +2,7 @@ shapelet-learner-webapp
 =================================
 ### How to run the programme
 - `mvn clean install` to compile.
-- Ececute `target\bin\webapp` to start the server.
+- Ececute `target/bin/webapp > tomcat.8334/out.log` to start the server.
 - All the API functionalities can be tested using [http://localhost:8334/demo.jsp](http://localhost:8334/demo.jsp)
 
 ### API URL patterns
