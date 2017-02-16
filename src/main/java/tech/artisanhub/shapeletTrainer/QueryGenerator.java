@@ -68,10 +68,6 @@ public class QueryGenerator {
             int upperSeriesId = Integer.MIN_VALUE;
             int lowerSeriesId = Integer.MAX_VALUE;
             int tempSeriesId;
-            String upperSeriesId = null;
-            String lowerSeriesId = null;
-            String tempSeriesId;
-
             int j = 0;
             while (currEventArr.hasNext()) {
                 curr = currEventArr.next();
