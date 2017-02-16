@@ -64,10 +64,14 @@ public class QueryGenerator {
             Double tempLow;
             Double currTemp;
             String currStringVal;
+            String upperSeriesId = null;
+            String lowerSeriesId = null;
+            String tempSeriesId;
             int j = 0;
             while (currEventArr.hasNext()) {
                 curr = currEventArr.next();
                 currRow = (JSONArray) curr.get("Values");
+                tempSeriesId = curr.get("SeriesId").toString();
                 j = 0;
                 for (int i = 0; i < currRow.size(); i++) {
                     currStringVal = String.valueOf(currRow.get(i));
@@ -90,9 +94,11 @@ public class QueryGenerator {
                     currTemp = new Double(currStringVal);
                     if (currTemp > tempUp) {
                         upperBound.set(j, currTemp);
+                        upperSeriesId = tempSeriesId;
                     }
                     if (currTemp < tempLow) {
                         lowerBound.set(j, currTemp);
+                        lowerSeriesId = tempSeriesId;
                     }
                     j++;
                 }
@@ -108,6 +114,8 @@ public class QueryGenerator {
                     query += "AND";
                 }
             }
+
+            query += "WITHIN (seriesId <=" + upperSeriesId + " AND seriesId>=" + lowerSeriesId + ")";
             System.out.println("Event 1: " + query);
             JSONObject currQuery = new JSONObject();
             currQuery.put("MainEvent", mainEvent);

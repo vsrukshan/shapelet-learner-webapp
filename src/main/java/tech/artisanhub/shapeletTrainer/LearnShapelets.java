@@ -101,6 +101,7 @@ public class LearnShapelets {
                     }
                     currRowObj.put("EventType", val.contentInMergedShapelets.get(i).get(contentSize - 1).intValue()); //add the correct val
                     currRowObj.put("Values", currRow);
+                    currRowObj.put("SeriesId",val.contentInMergedShapelets.get(i).get(contentSize - 3).intValue());
                     allRows.add(currRowObj);
 
                 }
