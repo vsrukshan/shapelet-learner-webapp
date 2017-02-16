@@ -116,7 +116,6 @@ public class QueryGenerator {
             }
 
             query += "WITHIN (seriesId <=" + upperSeriesId + " AND seriesId>=" + lowerSeriesId + ")";
-            System.out.println("Event 1: " + query);
             JSONObject currQuery = new JSONObject();
             currQuery.put("MainEvent", mainEvent);
             currQuery.put("Query", query);
