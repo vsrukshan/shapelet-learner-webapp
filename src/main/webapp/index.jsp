@@ -67,6 +67,7 @@
                 <a href="dashboard"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>
 
             <li><a href="graph_visualizer"><span class="fa fa-users"></span> Shapelet Visualizer</a></li>
+            <li><a href="parallel_coordinate "><span class="fa fa-users"></span> Parallel Coordinates</a></li>
 
         </ul>
         <!-- END X-NAVIGATION -->

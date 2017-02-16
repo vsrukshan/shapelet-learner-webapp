@@ -1,20 +1,20 @@
 <title>Linking to SlickGrid</title>
 
 <!-- SlickGrid -->
-<link rel="stylesheet" href="resources/js/slickgrid/slick.grid.css" type="text/css"/>
-<link rel="stylesheet" href="resources/js/slickgrid/jquery-ui-1.8.16.custom.css" type="text/css"/>
-<link rel="stylesheet" href="resources/js/slickgrid/examples.css" type="text/css"/>
-<link rel="stylesheet" href="resources/js/slickgrid/slick.pager.css" type="text/css"/>
-<script src="resources/js/slickgrid/jquery-1.7.min.js"></script>
-<script src="resources/js/slickgrid/jquery.event.drag-2.0.min.js"></script>
-<script src="resources/js/slickgrid/slick.core.js"></script>
-<script src="resources/js/slickgrid/slick.grid.js"></script>
-<script src="resources/js/slickgrid/slick.pager.js"></script>
-<script src="resources/js/slickgrid/slick.dataview.js"></script>
+<link rel="stylesheet" href="../../resources/js/slickgrid/slick.grid.css" type="text/css"/>
+<link rel="stylesheet" href="../../resources/js/slickgrid/jquery-ui-1.8.16.custom.css" type="text/css"/>
+<link rel="stylesheet" href="../../resources/js/slickgrid/examples.css" type="text/css"/>
+<link rel="stylesheet" href="../../resources/js/slickgrid/slick.pager.css" type="text/css"/>
+<script src="../../resources/js/slickgrid/jquery-1.7.min.js"></script>
+<script src="../../resources/js/slickgrid/jquery.event.drag-2.0.min.js"></script>
+<script src="../../resources/js/slickgrid/slick.core.js"></script>
+<script src="../../resources/js/slickgrid/slick.grid.js"></script>
+<script src="../../resources/js/slickgrid/slick.pager.js"></script>
+<script src="../../resources/js/slickgrid/slick.dataview.js"></script>
 <!-- End SlickGrid -->
 
-<link rel="stylesheet" type="text/css" href="resources/css/d3/d3.parcoords.css">
-<link rel="stylesheet" type="text/css" href="resources/css/d3/style.css">
+<link rel="stylesheet" type="text/css" href="../../resources/css/d3/d3.parcoords.css">
+<link rel="stylesheet" type="text/css" href="../../resources/css/d3/style.css">
 <style>
     body, html {
         margin: 0;
@@ -40,9 +40,9 @@
         color: #069;
     }
 </style>
-<script src="resources/js/d3/d3.min.js"></script>
-<script src="resources/js/d3/d3.parcoords.js"></script>
-<script src="resources/js/d3/divgrid.js"></script>
+<script src="../../resources/js/d3/d3.min.js"></script>
+<script src="../../resources/js/d3/d3.parcoords.js"></script>
+<script src="../../resources/js/d3/divgrid.js"></script>
 <input type="file" id="uploader">
 <div id="example" class="parcoords" style="height:240px;"></div>
 <div id="grid"></div>
