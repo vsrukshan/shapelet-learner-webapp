@@ -64,9 +64,14 @@ public class QueryGenerator {
             Double tempLow;
             Double currTemp;
             String currStringVal;
+
             int upperSeriesId = Integer.MIN_VALUE;
             int lowerSeriesId = Integer.MAX_VALUE;
             int tempSeriesId;
+            String upperSeriesId = null;
+            String lowerSeriesId = null;
+            String tempSeriesId;
+
             int j = 0;
             while (currEventArr.hasNext()) {
                 curr = currEventArr.next();
@@ -99,9 +104,11 @@ public class QueryGenerator {
                     currTemp = new Double(currStringVal);
                     if (currTemp > tempUp) {
                         upperBound.set(j, currTemp);
+                        upperSeriesId = tempSeriesId;
                     }
                     if (currTemp < tempLow) {
                         lowerBound.set(j, currTemp);
+                        lowerSeriesId = tempSeriesId;
                     }
                     j++;
                 }
